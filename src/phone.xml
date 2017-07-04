@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="false"></constant>
+	<package name="strutsphone" extends="json-default">
+		<!-- 注册用户 -->
+		<action name="addUserP" class="UserActionP" method="addUser">
+			<result type="json">null</result>
+		</action>
+		<!-- 完善用户信息 -->
+		<action name="prefectUserP" class="UserActionP" method="prefectUser">
+			<result type="json">null</result>
+		</action>
+		<!-- 更新用户pushid -->
+		<action name="updateUserPushidP" class="UserActionP" method="updateUserPushId">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取单个用户 -->
+		<action name="getOneUserP" class="UserActionP" method="getOneUser">
+			<result type="json">null</result>
+		</action>
+		<!-- 更新用户粉丝数量 -->
+		<action name="updateUserFenSiP" class="UserActionP" method="updateUserFenSi">
+			<result type="json">null</result>
+		</action>
+		<action name="getShopUrlP" class="UserActionP" method="getLoginUrl">
+			<result type="json">null</result>
+		</action>
+
+
+
+		<!-- 增加资源信息 -->
+		<action name="addZiYuanP" class="ZiYuanActionP" method="addZiYuan">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取资源信息 -->
+		<action name="getZiYuanP" class="ZiYuanActionP" method="getZiYuanInfos">
+			<result type="json">null</result>
+		</action>
+		<!-- 按照条件获取资源信息 -->
+		<action name="getZiyuansP" class="ZiYuanActionP" method="getZiyuans">
+			<result type="json">null</result>
+		</action>
+
+
+		<!-- 增加渠道信息 -->
+		<action name="addQuDaoP" class="QuDaoActionP" method="addQuDaoInfo">
+			<result type="json">null</result>
+		</action>
+		<action name="getQudaosP" class="QuDaoActionP" method="getQudaos">
+			<result type="json">null</result>
+		</action>
+
+
+		<!-- 增加回帖 -->
+		<action name="addHuiTieP" class="HuiTieActionP" method="addHuiTie">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取回帖 -->
+		<action name="getHuiTieP" class="HuiTieActionP" method="getHuiTies">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 获取用户发帖信息 -->
+		<action name="getUserTieziP" class="TieziActionP" method="getUserTieZi">
+			<result type="json">null</result>
+		</action>
+		
+		
+		
+		
+		
+		
+
+		<!-- 增加粉丝 -->
+		<action name="addFenSiP" class="FenSiActionP" method="addFenSi">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取粉丝 -->
+		<action name="getFenSiP" class="FenSiActionP" method="getFensis">
+			<result type="json">null</result>
+		</action>
+		<!-- 删除粉丝 -->
+		<action name="deleteFenSiP" class="FenSiActionP" method="deleteFenSi">
+			<result type="json">null</result>
+		</action>
+		<!-- 增加反馈信息 -->
+		<action name="addFanKuiP" class="FanKuiActionP" method="addFanKui">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取版本信息 -->
+		<action name="getBanBenP" class="BanBenActionP" method="getBenBen">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取系统信息 -->
+		<action name="getMsgP" class="MsgActionP" method="getMessages">
+			<result type="json">null</result>
+		</action>
+
+		<!-- 增加通知信息 -->
+		<action name="addTzP" class="TzActionP" method="addTZ">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取通知信息 -->
+		<action name="getTzP" class="TzActionP" method="getTz">
+			<result type="json">null</result>
+		</action>
+		<!-- 删除通知信息 -->
+		<action name="deleteTzP" class="TzActionP" method="deleteTz">
+			<result type="json">null</result>
+		</action>
+
+
+		<action name="duihuanP" class="OrderActionP" method="duihuanOrder">
+			<result type="json">null</result>
+		</action>
+		<action name="duihuanResultP" class="OrderActionP" method="duihuanResult">
+			<result type="json">null</result>
+		</action>
+	</package>
+</struts>

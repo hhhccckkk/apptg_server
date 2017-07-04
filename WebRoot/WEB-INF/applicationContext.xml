@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/apptg">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="7878168"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/hck/apptg/bean/User.hbm.xml</value>
+				<value>com/hck/apptg/bean/Ziyuan.hbm.xml</value>
+				<value>com/hck/apptg/bean/Huitie.hbm.xml</value>
+				<value>com/hck/apptg/bean/Qudao.hbm.xml</value>
+				<value>com/hck/apptg/bean/Admin.hbm.xml</value>
+				<value>com/hck/apptg/bean/Fensi.hbm.xml</value>
+				<value>com/hck/apptg/bean/Fankui.hbm.xml</value>
+				<value>com/hck/apptg/bean/Version.hbm.xml</value>
+				<value>com/hck/apptg/bean/Jinbi.hbm.xml</value>
+				<value>com/hck/apptg/bean/Message.hbm.xml</value>
+				<value>com/hck/apptg/bean/Tongzhi.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 用户dao -->
+	<bean id="userDao" class="com.hck.apptg.daoserver.UserDaoServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 资源dao -->
+	<bean id="ziyuanDao" class="com.hck.apptg.daoserver.ZiYuanDaoServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!-- 渠道dao -->
+	<bean id="qudaoDao" class="com.hck.apptg.daoserver.QuDaoServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 回帖dao -->
+	<bean id="huitieDao" class="com.hck.apptg.daoserver.HUiTieServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 帖子dao -->
+	<bean id="tieziDao" class="com.hck.apptg.daoserver.TieZiServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 粉丝dao -->
+	<bean id="fensiDao" class="com.hck.apptg.daoserver.FenSiServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 反馈dao -->
+	<bean id="fankuiDao" class="com.hck.apptg.daoserver.FanKuiServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 版本dao -->
+	<bean id="banbenDao" class="com.hck.apptg.daoserver.BanBenServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 金币dao -->
+	<bean id="jinbiDao" class="com.hck.apptg.daoserver.JinBiServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 消息dao -->
+	<bean id="msgDao" class="com.hck.apptg.daoserver.MessageServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!-- 通知dao -->
+	<bean id="TZDao" class="com.hck.apptg.daoserver.TongZhiServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+
+
+
+
+
+	<!-- 后台用dao -->
+	<!-- 管理员dao -->
+	<bean id="adminDao" class="com.hck.apptg.daoserver.AdminServer"
+		scope="prototype">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdminAction" class="com.hck.apptg.pc.action.AdminAction"
+		scope="prototype">
+		<property name="mAdminServer">
+			<ref bean="adminDao" />
+		</property>
+	</bean>
+
+	<!-- pc用户action -->
+	<bean id="UserAction" class="com.hck.apptg.pc.action.UserAction"
+		scope="prototype">
+		<property name="uServer">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+
+
+	<!-- 手机用action -->
+	<!-- 用户action -->
+	<bean id="UserActionP" class="com.hck.apptg.phone.action.UserAction"
+		scope="prototype">
+		<property name="uDao">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+
+	<!-- 资源action -->
+	<bean id="ZiYuanActionP" class="com.hck.apptg.phone.action.ZiYuanAction"
+		scope="prototype">
+		<property name="mZiYuanDaoServer">
+			<ref bean="ziyuanDao" />
+		</property>
+		<property name="jinBiServer">
+			<ref bean="jinbiDao" />
+		</property>
+	</bean>
+	<!-- 回帖action -->
+	<bean id="HuiTieActionP" class="com.hck.apptg.phone.action.HuiTieAction"
+		scope="prototype">
+		<property name="hServer">
+			<ref bean="huitieDao" />
+		</property>
+		<property name="jinBiServer">
+			<ref bean="jinbiDao" />
+		</property>
+	</bean>
+	<!-- 渠道action -->
+	<bean id="QuDaoActionP" class="com.hck.apptg.phone.action.QuDaoAction"
+		scope="prototype">
+		<property name="mDaoServer">
+			<ref bean="qudaoDao" />
+		</property>
+		<property name="jinBiServer">
+			<ref bean="jinbiDao" />
+		</property>
+	</bean>
+	<!-- 帖子action -->
+	<bean id="TieziActionP" class="com.hck.apptg.phone.action.TieZiAction"
+		scope="prototype">
+		<property name="tieZiServer">
+			<ref bean="tieziDao" />
+		</property>
+	</bean>
+	<!-- 粉丝action -->
+	<bean id="FensiActionP" class="com.hck.apptg.phone.action.FenSiAction"
+		scope="prototype">
+		<property name="fServer">
+			<ref bean="fensiDao" />
+		</property>
+		<property name="uServer">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+	<!-- 反馈action -->
+	<bean id="FanKuiActionP" class="com.hck.apptg.phone.action.FanKuiAction"
+		scope="prototype">
+		<property name="mServer">
+			<ref bean="FanKuiActionP" />
+		</property>
+		<property name="jinBiServer">
+			<ref bean="jinbiDao" />
+		</property>
+	</bean>
+	<!-- 版本action -->
+	<bean id="BanBenActionP" class="com.hck.apptg.phone.action.BanBenAction"
+		scope="prototype">
+		<property name="banBenServer">
+			<ref bean="banbenDao" />
+		</property>
+	</bean>
+	<!-- 系统消息action -->
+	<bean id="MsgActionP" class="com.hck.apptg.phone.action.MessageAction"
+		scope="prototype">
+		<property name="messageServer">
+			<ref bean="msgDao" />
+		</property>
+	</bean>
+	<!-- 通知消息action -->
+	<bean id="TzActionP" class="com.hck.apptg.phone.action.TongZhiAction"
+		scope="prototype">
+		<property name="tongZhiServer">
+			<ref bean="TZDao" />
+		</property>
+	</bean>
+
+	<!-- 兑吧处理兑换action -->
+	<bean id="OrderActionP" class="com.hck.apptg.phone.action.OrderAction"
+		scope="prototype">
+		<property name="mDaoServer">
+			<ref bean="userDao" />
+		</property>
+	</bean>
+</beans>
