@@ -8,6 +8,7 @@ public class TieZi extends QudaoData{
   private long tid;
   private String title;
   private String time;
+
 public long getUid() {
 	return uid;
 }

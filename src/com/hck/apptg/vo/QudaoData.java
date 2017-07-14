@@ -19,6 +19,15 @@ public class QudaoData implements java.io.Serializable {
 	private String touxiang;
 	private long jifeng;
 	private long uid;
+    private long fensi;
+    
+	public long getFensi() {
+		return fensi;
+	}
+
+	public void setFensi(long fensi) {
+		this.fensi = fensi;
+	}
 
 	public long getUid() {
 		return uid;

@@ -8,7 +8,13 @@ import com.hck.apptg.bean.Fensi;
 
 public class FenSiServer extends HibernateDaoSupport {
 	public List<Fensi> getFensis(long uid) {
-		String sql = "from Fensi f order by f.id desc";
+		String sql = "from Fensi f where f.uid="+uid+" order by f.id desc";
+		return getHibernateTemplate().find(sql);
+	}
+	
+	
+	public List<Fensi> getGuanZhus(long uid) {
+		String sql = "from Fensi f where f.fuid="+uid+" order by f.id desc";
 		return getHibernateTemplate().find(sql);
 	}
 
@@ -29,6 +35,15 @@ public class FenSiServer extends HibernateDaoSupport {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public boolean isGuanZhu(long uid, long fuid) {
+		String sql = "from Fensi f where f.uid=" + uid + " and f.fuid=" + fuid;
+		List<Fensi> fensis = getHibernateTemplate().find(sql);
+		if (fensis != null && !fensis.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 
 }

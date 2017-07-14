@@ -38,18 +38,15 @@ public class User implements java.io.Serializable {
 	private Integer fatienum;
 	private String qqid;
 	private Integer usertype;
+	private Long guanzhu;
+	private Set huities = new HashSet(0);
 	private Set ziyuans = new HashSet(0);
+	private Set qudaos = new HashSet(0);
 
 	// Constructors
+
 	/** default constructor */
-	public User(String qqIdString, double jd, double wd) {
-		this.qqid = qqIdString;
-		this.jingdu = jd;
-		this.weidu = wd;
-	}
-
 	public User() {
-
 	}
 
 	/** full constructor */
@@ -59,7 +56,8 @@ public class User implements java.io.Serializable {
 			Double jingdu, Double weidu, Integer isok, Integer isvip,
 			String logintime, String registertime, Long jifeng, Long jinbi,
 			String gongsi, String jieshao, Long fensi, Integer fatienum,
-			String qqid, Integer usertype, Set ziyuans) {
+			String qqid, Integer usertype, Long guanzhu, Set huities,
+			Set ziyuans, Set qudaos) {
 		this.name = name;
 		this.password = password;
 		this.sex = sex;
@@ -86,7 +84,16 @@ public class User implements java.io.Serializable {
 		this.fatienum = fatienum;
 		this.qqid = qqid;
 		this.usertype = usertype;
+		this.guanzhu = guanzhu;
+		this.huities = huities;
 		this.ziyuans = ziyuans;
+		this.qudaos = qudaos;
+	}
+
+	public User(String qid, double jindu1, double weidu) {
+		this.qqid = qid;
+		this.jingdu = jindu1;
+		this.weidu = weidu;
 	}
 
 	// Property accessors
@@ -307,12 +314,36 @@ public class User implements java.io.Serializable {
 		this.usertype = usertype;
 	}
 
+	public Long getGuanzhu() {
+		return this.guanzhu;
+	}
+
+	public void setGuanzhu(Long guanzhu) {
+		this.guanzhu = guanzhu;
+	}
+
+	public Set getHuities() {
+		return this.huities;
+	}
+
+	public void setHuities(Set huities) {
+		this.huities = huities;
+	}
+
 	public Set getZiyuans() {
 		return this.ziyuans;
 	}
 
 	public void setZiyuans(Set ziyuans) {
 		this.ziyuans = ziyuans;
+	}
+
+	public Set getQudaos() {
+		return this.qudaos;
+	}
+
+	public void setQudaos(Set qudaos) {
+		this.qudaos = qudaos;
 	}
 
 }

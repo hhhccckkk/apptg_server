@@ -88,11 +88,26 @@
         <property name="usertype" type="java.lang.Integer">
             <column name="usertype" />
         </property>
-        <set name="ziyuans" inverse="true"  cascade="all" lazy="false">
+        <property name="guanzhu" type="java.lang.Long">
+            <column name="guanzhu" />
+        </property>
+        <set name="huities" inverse="false" cascade="all" lazy="false">
+            <key>
+                <column name="huid" />
+            </key>
+            <one-to-many class="com.hck.apptg.bean.Huitie" />
+        </set>
+        <set name="ziyuans" inverse="false" cascade="all" lazy="false">
             <key>
                 <column name="uid" />
             </key>
             <one-to-many class="com.hck.apptg.bean.Ziyuan" />
+        </set>
+        <set name="qudaos" inverse="false" cascade="all" lazy="false">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.hck.apptg.bean.Qudao" />
         </set>
     </class>
 </hibernate-mapping>

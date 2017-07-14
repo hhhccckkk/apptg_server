@@ -105,6 +105,7 @@ public class QuDaoAction extends BaseAction {
 			qudaoData.setWeixin(user.getWeixin());
 			qudaoData.setXitong(qudao.getXitong());
 			qudaoData.setLianjie(qudao.getLianjie());
+			qudaoData.setFensi(user.getFensi());
 			datas.add(qudaoData);
 		}
 		return datas;

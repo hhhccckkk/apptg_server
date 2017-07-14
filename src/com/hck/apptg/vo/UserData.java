@@ -38,6 +38,15 @@ public class UserData implements java.io.Serializable {
 	private Integer fatienum;
 	private String qqid;
 	private Integer usertype;
+    private long guanzhu;
+    
+	public long getGuanzhu() {
+		return guanzhu;
+	}
+
+	public void setGuanzhu(long guanzhu) {
+		this.guanzhu = guanzhu;
+	}
 
 	public UserData() {
 

@@ -81,6 +81,14 @@ public class UserDaoServer extends HibernateDaoSupport {
 
 	}
 
+	public void updateUserGuangZhu(long uid) {
+		User user = (User) getHibernateTemplate().get(User.class, uid);
+		user.setGuanzhu(user.getGuanzhu() + 1);
+		getHibernateTemplate().update(user);
+		getHibernateTemplate().flush();
+
+	}
+
 	/**
 	 * ��ȡһ���û�
 	 * 
@@ -113,7 +121,7 @@ public class UserDaoServer extends HibernateDaoSupport {
 	 * @param uid
 	 * @return
 	 */
-	public User updateUserFenSi(long uid,int fensi) {
+	public User updateUserFenSi(long uid, int fensi) {
 		User oldUser = (User) getHibernateTemplate().get(User.class, uid);
 		if (oldUser != null) {
 			oldUser.setFensi(oldUser.getFensi() + fensi);
@@ -147,7 +155,8 @@ public class UserDaoServer extends HibernateDaoSupport {
 	 */
 	public List<User> getUsers(int page) {
 		String sqlString = "from User u order by  u.id desc";
-		ActionContext.getContext().getSession().put("userSize", getCount(sqlString));
+		ActionContext.getContext().getSession()
+				.put("userSize", getCount(sqlString));
 		return getList(sqlString, page, 12);
 	}
 

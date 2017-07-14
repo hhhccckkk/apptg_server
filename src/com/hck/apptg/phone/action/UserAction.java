@@ -62,6 +62,7 @@ public class UserAction extends BaseAction {
 			newUser.setPhone(phoneString);
 			newUser.setPhonetype(phoneTypeString);
 			newUser.setQq(qq);
+			newUser.setGuanzhu(0l);
 			newUser.setQqid(qqIdString);
 			newUser.setRegistertime(new Timestamp(System.currentTimeMillis())
 					.toString());
@@ -186,6 +187,7 @@ public class UserAction extends BaseAction {
 				user.getGongsi(), user.getJieshao(), user.getFensi(),
 				user.getFatienum(), user.getQqid(), user.getUsertype());
 		userData.setId(user.getId());
+		userData.setGuanzhu(user.getGuanzhu());
 		return userData;
 	}
 }

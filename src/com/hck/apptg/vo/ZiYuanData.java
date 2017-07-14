@@ -23,7 +23,7 @@ public class ZiYuanData {
 	private String appName;
 	
 	/**
-	 * ÓÃ»§²¿·Ö
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	private long uid;
 	private String touxiang;
@@ -33,6 +33,15 @@ public class ZiYuanData {
 	private int vip;
 	private String name;
 	private String userPhone;
+	private long fensi;
+	
+	
+	public long getFensi() {
+		return fensi;
+	}
+	public void setFensi(long fensi) {
+		this.fensi = fensi;
+	}
 	public Long getId() {
 		return id;
 	}

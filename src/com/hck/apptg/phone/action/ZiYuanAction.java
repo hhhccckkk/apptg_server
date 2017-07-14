@@ -147,6 +147,7 @@ public class ZiYuanAction extends BaseAction {
 				ziYuanData.setVip(user.getIsvip());
 				ziYuanData.setSex(user.getSex());
 				ziYuanData.setUid(user.getId());
+				ziYuanData.setFensi(user.getFensi());
 			}
 			ziYuanDatas.add(ziYuanData);
 		}

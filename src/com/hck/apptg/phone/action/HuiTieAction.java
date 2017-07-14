@@ -89,6 +89,8 @@ public class HuiTieAction extends BaseAction {
 				huiTieData.setNicheng(user.getNicheng());
 				huiTieData.setSex(user.getSex());
 				huiTieData.setId(user.getId());
+				huiTieData.setFensi(user.getFensi());
+				huiTieData.setJifeng(user.getJifeng());
 			}
 			huiTieDatas.add(huiTieData);
 		}

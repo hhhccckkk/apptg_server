@@ -53,7 +53,7 @@ public class JinBiServer extends HibernateDaoSupport {
 	private void updateUser(long uid, int jifen, int point) {
 		User user = (User) getHibernateTemplate().get(User.class, uid);
 		user.setJifeng(user.getJifeng() + jifen);
-		user.setJinbi((long)point);
+		user.setJinbi(user.getJinbi()+point);
 		getHibernateTemplate().update(user);
 		getHibernateTemplate().flush();
 	}

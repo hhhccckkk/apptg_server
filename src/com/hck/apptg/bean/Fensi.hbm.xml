@@ -16,14 +16,20 @@
         <property name="fuid" type="java.lang.Long">
             <column name="fuid" />
         </property>
-        <property name="touxiang" type="java.lang.String">
-            <column name="touxiang" length="100" />
+        <property name="ftouxiang" type="java.lang.String">
+            <column name="ftouxiang" length="100" />
         </property>
-        <property name="name" type="java.lang.String">
-            <column name="name" length="100" />
+        <property name="fname" type="java.lang.String">
+            <column name="fname" length="100" />
         </property>
         <property name="time" type="java.lang.String">
             <column name="time" length="100" />
+        </property>
+        <property name="touxiang" type="java.lang.String">
+            <column name="touxiang" />
+        </property>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
         </property>
     </class>
 </hibernate-mapping>

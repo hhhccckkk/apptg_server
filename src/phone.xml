@@ -76,17 +76,25 @@
 		
 
 		<!-- 增加粉丝 -->
-		<action name="addFenSiP" class="FenSiActionP" method="addFenSi">
+		<action name="addFenSiP" class="FSActionP" method="addFenSi">
 			<result type="json">null</result>
 		</action>
 		<!-- 获取粉丝 -->
-		<action name="getFenSiP" class="FenSiActionP" method="getFensis">
+		<action name="getFenSiP" class="FSActionP" method="getFensis">
+			<result type="json">null</result>
+		</action>
+		
+		<!-- 获取关注 -->
+		<action name="getGuanZhuP" class="FSActionP" method="getGuanZhus">
 			<result type="json">null</result>
 		</action>
 		<!-- 删除粉丝 -->
-		<action name="deleteFenSiP" class="FenSiActionP" method="deleteFenSi">
+		<action name="deleteFenSiP" class="FSActionP" method="deleteFenSi">
 			<result type="json">null</result>
 		</action>
+		
+		
+		
 		<!-- 增加反馈信息 -->
 		<action name="addFanKuiP" class="FanKuiActionP" method="addFanKui">
 			<result type="json">null</result>
