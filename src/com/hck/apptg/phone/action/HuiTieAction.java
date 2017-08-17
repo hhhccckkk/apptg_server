@@ -36,17 +36,21 @@ public class HuiTieAction extends BaseAction {
 		init();
 		long uid = getLongData("id");
 		long tid = getLongData("tid");
+		long buid=getLongData("buid");
 		String yuantie = getStringData("yuantie");
+		String huitie1 = getStringData("huitie1");
 		String huitie = getStringData("huitie");
 		Huitie huitie2 = new Huitie();
 		huitie2.setImage("");
 		huitie2.setTid(tid);
+		huitie2.setBuid(buid);
 		huitie2.setTime(new Timestamp(System.currentTimeMillis()).toString());
 		huitie2.setYuantie(yuantie);
 		User user = new User();
 		user.setId(uid);
 		huitie2.setUser(user);
 		huitie2.setHuifu(huitie);
+		huitie2.setHuifu1(huitie1);
 		boolean isok = hServer.addHuiTie(huitie2);
 		if (isok) {
 			boolean isok2 = jinBiServer.isAddJinBi(uid, 50, 10);
@@ -59,13 +63,25 @@ public class HuiTieAction extends BaseAction {
 		}
 		write();
 	}
-    /**
-     * ��ȡ������Ϣ
-     */
+  
 	public void getHuiTies() {
 		init();
 		long tid = getLongData("tid");
 		List<Huitie> huities = hServer.getHuities(tid);
+		if (huities != null) {
+			json.put("code", Contans.SUCCESS);
+			json.put("data", changeDatas(huities));
+
+		} else {
+			json.put("code", Contans.ERROR);
+		}
+		write();
+	}
+	
+	public void getHuiFus() {
+		init();
+		long id = getLongData("uid");
+		List<Huitie> huities = hServer.getHuiFus(id);
 		if (huities != null) {
 			json.put("code", Contans.SUCCESS);
 			json.put("data", changeDatas(huities));
@@ -81,8 +97,10 @@ public class HuiTieAction extends BaseAction {
 		for (Huitie huitie : huities) {
 			HuiTieData huiTieData = new HuiTieData();
 			huiTieData.setHtieId(huitie.getId());
+			huiTieData.setTid(huitie.getTid());
 			huiTieData.setYuantie(huitie.getYuantie());
 			huiTieData.setHuitie(huitie.getHuifu());
+			huiTieData.setHuifu1(huitie.getHuifu1());
 			User user = huitie.getUser();
 			if (user != null) {
 				huiTieData.setTouxiang(user.getTouxiang());

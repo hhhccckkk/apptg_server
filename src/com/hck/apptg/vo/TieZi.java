@@ -8,7 +8,36 @@ public class TieZi extends QudaoData{
   private long tid;
   private String title;
   private String time;
+  private String appName;
+  private int jiage;
+  private String jiesuan;
+  private int isTuiJian;
+  
+public int getIsTuiJian() {
+	return isTuiJian;
+}
+public void setIsTuiJian(int isTuiJian) {
+	this.isTuiJian = isTuiJian;
+}
+public String getAppName() {
+	return appName;
+}
+public void setAppName(String appName) {
+	this.appName = appName;
+}
 
+public int getJiage() {
+	return jiage;
+}
+public void setJiage(int jiage) {
+	this.jiage = jiage;
+}
+public String getJiesuan() {
+	return jiesuan;
+}
+public void setJiesuan(String jiesuan) {
+	this.jiesuan = jiesuan;
+}
 public long getUid() {
 	return uid;
 }

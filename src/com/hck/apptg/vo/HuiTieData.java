@@ -6,7 +6,14 @@ private Long tid;
 private String yuantie;
 private String huitie;
 private String time;
+private String huifu1;
 
+public String getHuifu1() {
+	return huifu1;
+}
+public void setHuifu1(String huifu1) {
+	this.huifu1 = huifu1;
+}
 public Long getHtieId() {
 	return htieId;
 }

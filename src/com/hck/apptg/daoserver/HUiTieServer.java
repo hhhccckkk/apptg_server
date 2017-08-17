@@ -25,5 +25,11 @@ public class HUiTieServer extends HibernateDaoSupport {
 		String sqlString = "from Huitie h where h.tid=" + tid;
 		return getHibernateTemplate().find(sqlString);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Huitie> getHuiFus(long uid) {
+		String sqlString = "from Huitie h where h.buid=" + uid;
+		return getHibernateTemplate().find(sqlString);
+	}
 
 }

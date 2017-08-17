@@ -13,6 +13,9 @@
             <property name="yuantie" type="java.lang.String">
                 <column name="yuantie" />
             </property>
+            <property name="huifu1" type="java.lang.String">
+                <column name="huifu1" />
+            </property>
             <property name="image" type="java.lang.String">
                 <column name="image" />
             </property>
@@ -21,6 +24,9 @@
             </property>
             <property name="tid" type="java.lang.Long">
                 <column name="tid" />
+            </property>
+            <property name="buid" type="java.lang.Long">
+                <column name="buid" />
             </property>
             <property name="huifu" type="java.lang.String">
                 <column name="huifu" />

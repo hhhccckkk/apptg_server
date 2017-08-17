@@ -56,5 +56,7 @@ public class TieZiServer extends HibernateDaoSupport {
 		super.releaseSession(session);
 		return mQudaos;
 	}
+	
+	
 
 }

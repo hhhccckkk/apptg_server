@@ -8,6 +8,7 @@ import com.hck.apptg.bean.User;
 import com.hck.apptg.bean.Ziyuan;
 import com.hck.apptg.daoserver.JinBiServer;
 import com.hck.apptg.daoserver.ZiYuanDaoServer;
+import com.hck.apptg.util.LogUtil;
 import com.hck.apptg.vo.Contans;
 import com.hck.apptg.vo.ZiYuanData;
 
@@ -118,42 +119,58 @@ public class ZiYuanAction extends BaseAction {
 			return null;
 		}
 		for (int i = 0; i < ziyuans.size(); i++) {
-			ZiYuanData ziYuanData = new ZiYuanData();
-			Ziyuan ziyuan = ziyuans.get(i);
-			ziYuanData.setAppName(ziyuan.getAppName());
-			ziYuanData.setApptype(ziyuan.getApptype());
-			ziYuanData.setContent(ziyuan.getContent());
-			ziYuanData.setFabukind(ziyuan.getFabukind());
-			ziYuanData.setFabutime(ziyuan.getFabutime());
-			ziYuanData.setHedui(ziyuan.getHedui());
-			ziYuanData.setHuifunum(ziyuan.getHuifunum());
-			ziYuanData.setId(ziyuan.getId());
-			ziYuanData.setIsok(ziyuan.getIsok());
-			ziYuanData.setIstj(ziyuan.getIstj());
-			ziYuanData.setJiage(ziyuan.getJiage());
-			ziYuanData.setJiesuantime(ziyuan.getJiesuantime());
-			ziYuanData.setTitle(ziyuan.getTitle());
-			ziYuanData.setXitong(ziyuan.getXitong());
-			ziYuanData.setQq(ziyuan.getQq());
-			ziYuanData.setWeixin(ziyuan.getWeixin());
-			ziYuanData.setPhone(ziyuan.getPhone());
-			User user = ziyuan.getUser();
-			if (user != null) {
-				ziYuanData.setJifeng(user.getJifeng());
-				ziYuanData.setJinbi(user.getJinbi());
-				ziYuanData.setTouxiang(user.getTouxiang());
-				ziYuanData.setName(user.getNicheng());
-				ziYuanData.setUserPhone(user.getPhone());
-				ziYuanData.setVip(user.getIsvip());
-				ziYuanData.setSex(user.getSex());
-				ziYuanData.setUid(user.getId());
-				ziYuanData.setFensi(user.getFensi());
-			}
-			ziYuanDatas.add(ziYuanData);
+			ziYuanDatas.add(getZiyuanData(ziyuans.get(i)));
 		}
 
 		return ziYuanDatas;
 
+	}
+
+	private ZiYuanData getZiyuanData(Ziyuan ziyuan) {
+		ZiYuanData ziYuanData = new ZiYuanData();
+		ziYuanData.setAppName(ziyuan.getAppName());
+		ziYuanData.setApptype(ziyuan.getApptype());
+		ziYuanData.setContent(ziyuan.getContent());
+		ziYuanData.setFabukind(ziyuan.getFabukind());
+		ziYuanData.setFabutime(ziyuan.getFabutime());
+		ziYuanData.setHedui(ziyuan.getHedui());
+		ziYuanData.setHuifunum(ziyuan.getHuifunum());
+		ziYuanData.setId(ziyuan.getId());
+		ziYuanData.setIsok(ziyuan.getIsok());
+		ziYuanData.setIstj(ziyuan.getIstj());
+		ziYuanData.setJiage(ziyuan.getJiage());
+		ziYuanData.setJiesuantime(ziyuan.getJiesuantime());
+		ziYuanData.setTitle(ziyuan.getTitle());
+		ziYuanData.setXitong(ziyuan.getXitong());
+		ziYuanData.setQq(ziyuan.getQq());
+		ziYuanData.setWeixin(ziyuan.getWeixin());
+		ziYuanData.setPhone(ziyuan.getPhone());
+		User user = ziyuan.getUser();
+		if (user != null) {
+			ziYuanData.setJifeng(user.getJifeng());
+			ziYuanData.setJinbi(user.getJinbi());
+			ziYuanData.setTouxiang(user.getTouxiang());
+			ziYuanData.setName(user.getNicheng());
+			ziYuanData.setUserPhone(user.getPhone());
+			ziYuanData.setVip(user.getIsvip());
+			ziYuanData.setSex(user.getSex());
+			ziYuanData.setUid(user.getId());
+			ziYuanData.setFensi(user.getFensi());
+		}
+		return ziYuanData;
+	}
+
+	public void getOneZiYuan() {
+		init();
+		long id = getLongData("tid");
+		Ziyuan ziyuan = mZiYuanDaoServer.getZiYuan(id);
+		if (ziyuan != null) {
+			json.put("data", getZiyuanData(ziyuan));
+			json.put("code", Contans.SUCCESS);
+		} else {
+			json.put("code", Contans.ERROR);
+		}
+		write();
 	}
 
 }

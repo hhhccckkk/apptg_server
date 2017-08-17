@@ -40,6 +40,10 @@
 		<action name="getZiYuanP" class="ZiYuanActionP" method="getZiYuanInfos">
 			<result type="json">null</result>
 		</action>
+		<!-- 获取资源详情 -->
+		<action name="getOneZiYuanP" class="ZiYuanActionP" method="getOneZiYuan">
+			<result type="json">null</result>
+		</action>
 		<!-- 按照条件获取资源信息 -->
 		<action name="getZiyuansP" class="ZiYuanActionP" method="getZiyuans">
 			<result type="json">null</result>
@@ -57,6 +61,10 @@
 
 		<!-- 增加回帖 -->
 		<action name="addHuiTieP" class="HuiTieActionP" method="addHuiTie">
+			<result type="json">null</result>
+		</action>
+		<!-- 获取用户被回复的信息 -->
+		<action name="getHuiFus" class="HuiTieActionP" method="getHuiFus">
 			<result type="json">null</result>
 		</action>
 		<!-- 获取回帖 -->
@@ -118,6 +126,11 @@
 		</action>
 		<!-- 删除通知信息 -->
 		<action name="deleteTzP" class="TzActionP" method="deleteTz">
+			<result type="json">null</result>
+		</action>
+		
+		<!-- 增加举报信息 -->
+		<action name="juBaoP" class="JuBaoActionP" method="juBao">
 			<result type="json">null</result>
 		</action>
 

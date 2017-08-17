@@ -26,11 +26,11 @@ public class TieZiAction extends BaseAction {
 		LogUtil.log("getUserTieZi: ");
 		init();
 		long uid = getLongData("id");
-		LogUtil.log("uid: "+uid);
+		LogUtil.log("uid: " + uid);
 		List<Ziyuan> ziyuans = tieZiServer.getZiyuans(uid);
-		LogUtil.log("ziyuans size: "+ziyuans.size());
+		LogUtil.log("ziyuans size: " + ziyuans.size());
 		List<Qudao> qudaos = tieZiServer.getQudaos(uid);
-		LogUtil.log("qudaos size: "+qudaos.size());
+		LogUtil.log("qudaos size: " + qudaos.size());
 		List<TieZi> tieZis = new ArrayList<TieZi>();
 		if (ziyuans != null) {
 			for (Ziyuan ziyuan : ziyuans) {
@@ -48,8 +48,13 @@ public class TieZiAction extends BaseAction {
 				tieZi.setSex(user.getSex());
 				tieZi.setTouxiang(user.getTouxiang());
 				tieZi.setName(user.getNicheng());
-				tieZi.setWeixin(user.getWeixin());
+				tieZi.setWeixin(ziyuan.getWeixin());
 				tieZi.setTime(ziyuan.getFabutime());
+				tieZi.setAppName(ziyuan.getAppName());
+				tieZi.setJiage(ziyuan.getJiage());
+				tieZi.setJiesuan(ziyuan.getJiesuantime());
+				tieZi.setIsTuiJian(ziyuan.getIstj());
+				tieZi.setJifeng(user.getJifeng());
 				tieZis.add(tieZi);
 			}
 		}
@@ -72,6 +77,9 @@ public class TieZiAction extends BaseAction {
 				tieZi.setTouxiang(qudao.getUser().getTouxiang());
 				tieZi.setName(qudao.getUser().getNicheng());
 				tieZi.setTime(qudao.getShijian());
+				tieZi.setXitong(qudao.getXitong());
+				tieZi.setLiangji(qudao.getLianjie());
+				tieZi.setJifeng(qudao.getUser().getJifeng());
 				tieZis.add(tieZi);
 			}
 		}
@@ -84,5 +92,7 @@ public class TieZiAction extends BaseAction {
 		write();
 
 	}
+
+	
 
 }

@@ -79,5 +79,8 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 		String sql = "from Ziyuan";
 		return this.getHibernateTemplate().find(sql).size();
 	}
+	public Ziyuan getZiYuan(long id){
+		return (Ziyuan) getHibernateTemplate().get(Ziyuan.class, id);
+	}
 
 }

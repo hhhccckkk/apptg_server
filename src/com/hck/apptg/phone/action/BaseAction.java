@@ -89,7 +89,7 @@ public class BaseAction {
 		if (dataString == null || "null".equals(dataString)) {
 			return 0l;
 		}
-		long data = Long.parseLong(getStringData(key));
+		long data = Long.parseLong(dataString);
 		return data;
 	}
 
