@@ -22,7 +22,16 @@
 		<action name="getOneUser" class="UserAction" method="getOneUser">
 			<result name="success">showOneUser.jsp</result>
 		</action>
-		
+		<action name="searchUser" class="UserAction" method="searchUser">
+			<result name="success">showUser.jsp</result>
+		</action>
+		<action name="searchUser" class="UserAction" method="searchUser">
+			<result name="success">/admin/showOneUser.jsp</result>
+		</action>
+		<action name="getUserSize" class="UserAction" method="getUserSize">
+			<result name="success">showUserSize.jsp</result>
+		</action>
+
 		<!-- 资源 -->
 		<action name="getZiYuans" class="ZiYuanAction" method="getZiYuans">
 			<result name="success">showZiYuan.jsp</result>
@@ -32,6 +41,14 @@
 		</action>
 		<action name="getUserTieZi" class="ZiYuanAction" method="getUserTieZi">
 			<result name="success">showZiYuan.jsp</result>
+		</action>
+
+		<action name="addZiYuan" class="ZiYuanAction" method="addZiYuan">
+			<result name="success">/admin/addzy.jsp</result>
+		</action>
+
+		<action name="searchZiYuan" class="ZiYuanAction" method="searchZiYuan">
+			<result name="success">/admin/showZiYuan.jsp</result>
 		</action>
 		<!-- 渠道 -->
 		<action name="getQuDao" class="QuDaoAction" method="getQuDao">
@@ -43,6 +60,9 @@
 		<action name="updateQuDao" class="QuDaoAction" method="updateQuDao">
 			<result name="success" type="redirectAction">admin/getQuDao</result>
 		</action>
+		<action name="addQuDao" class="QuDaoAction" method="addQuDao">
+			<result name="success">/admin/addqd.jsp</result>
+		</action>
 		<!-- 回帖 -->
 		<action name="getHuiTie" class="HuiTieAction" method="getHuiTie">
 			<result name="success">showHuiTie.jsp</result>
@@ -50,7 +70,7 @@
 		<action name="deleteHuiTie" class="HuiTieAction" method="deleteHuiTie">
 			<result name="success" type="redirectAction">admin/getHuiTie</result>
 		</action>
-		
+
 		<action name="getUserPl" class="HuiTieAction" method="getUserPl">
 			<result name="success">showHuiTie.jsp</result>
 		</action>
@@ -61,5 +81,46 @@
 		<action name="deleteFanKui" class="FanKuiAction" method="deleteFanKui">
 			<result name="success" type="redirectAction">admin/getFanKui</result>
 		</action>
+
+		<!-- 举报信息 -->
+		<action name="getJuBao" class="JuBaoAction" method="getJuBao">
+			<result name="success">showJuBao.jsp</result>
+		</action>
+
+		<action name="deleteJuBao" class="JuBaoAction" method="deleteJuBao">
+			<result name="success" type="redirectAction">admin/getJuBao</result>
+		</action>
+
+
+		<!-- 信息 -->
+		<action name="getMsgs" class="MessageAction" method="getMsg">
+			<result name="success">showMsg.jsp</result>
+		</action>
+
+		<action name="addMsg" class="MessageAction" method="addMsg">
+			<result name="success">admin/addMessage.jsp</result>
+		</action>
+
+
+		<action name="deleteMsg" class="MessageAction" method="deleteMsg">
+			<result name="success" type="redirectAction">admin/getMsg</result>
+		</action>
+
+
+		<!-- 通知 -->
+		<action name="getTZ" class="TongZhiAction" method="getTongZhis">
+			<result name="success">showMsg.jsp</result>
+		</action>
+
+		<action name="addTZ" class="TongZhiAction" method="addTongZhi">
+			<result name="success">admin/addMessage.jsp</result>
+		</action>
+
+
+		<action name="deleteTZ" class="TongZhiAction" method="deleteTongZhi">
+			<result name="success" type="redirectAction">admin/getTongZhi</result>
+		</action>
+
+
 	</package>
 </struts>

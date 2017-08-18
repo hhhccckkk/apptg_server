@@ -51,6 +51,7 @@ public class TongZhiAction extends BaseAction {
 	}
 
 	public void deleteTz() {
+		init();
 		long id = getLongData("id");
 		boolean isok = tongZhiServer.deleteTongZhi(id);
 		json.put("code", isok);

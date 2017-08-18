@@ -4,7 +4,7 @@ package com.hck.apptg.bean;
  * Tongzhi entity. @author MyEclipse Persistence Tools
  */
 
-public class Tongzhi implements java.io.Serializable {
+public class Tongzhi implements java.io.Serializable, Comparable {
 
 	// Fields
 
@@ -89,6 +89,15 @@ public class Tongzhi implements java.io.Serializable {
 
 	public void setType(Integer type) {
 		this.type = type;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Tongzhi) {
+			Tongzhi emp = (Tongzhi) o;
+			return emp.type - this.type;
+		}
+		return 0;
 	}
 
 }

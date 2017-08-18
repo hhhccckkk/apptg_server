@@ -20,7 +20,7 @@ public class TongZhiServer extends HibernateDaoSupport {
 	@SuppressWarnings("unchecked")
 	public List<Tongzhi> getTongzhis(long uid) {
 		String sqlString = "from Tongzhi t where t.uid=" + uid
-				+ " order by t.id desc";
+				+ " or t.type=2 order by t.id desc";
 		return getHibernateTemplate().find(sqlString);
 	}
 
@@ -35,5 +35,11 @@ public class TongZhiServer extends HibernateDaoSupport {
 		}
 
 	}
+	@SuppressWarnings("unchecked")
+	public List<Tongzhi> getTongzhiXT() {
+		String sqlString = "from Tongzhi t where t.type=2 order by t.id desc";
+		return getHibernateTemplate().find(sqlString);
+	}
+	
 
 }

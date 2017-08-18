@@ -1,6 +1,9 @@
 package com.hck.apptg.daoserver;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -12,7 +15,8 @@ import com.hck.apptg.bean.Ziyuan;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserDaoServer extends HibernateDaoSupport {
-
+	private static final int TODY_SIZE = 1;
+	private static final int ZUOTIAN_SIZE = 2;
 	public User addUser(User user) {
 		if (user != null) {
 			try {
@@ -177,6 +181,37 @@ public class UserDaoServer extends HibernateDaoSupport {
 	private int getCount(String sql) {
 
 		return this.getHibernateTemplate().find(sql).size();
+	}
+	
+	public List<User> searchUser(String key){
+		String sqlString = "from User u where u.nicheng like '%"+key+"'";
+		ActionContext.getContext().getSession()
+		.put("userSize", getCount(sqlString));
+		return getHibernateTemplate().find(sqlString);
+	}
+	
+	public long getUserSize(int type) {
+		Date endDate = new Date();
+		Calendar cl = Calendar.getInstance();
+		cl.setTime(endDate);
+		String sql = "from User u WHERE date(u.registertime) = curdate()";
+		if (type == TODY_SIZE) {
+			return getCount(sql);
+		} else if (type == ZUOTIAN_SIZE) {
+			cl.add(Calendar.DATE, -1);
+			Date startDate = cl.getTime();
+			SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
+			// 格式化开始日期和结束日期
+			String start = dd.format(startDate);
+			String end = dd.format(endDate);
+
+			sql = "from User u where u.registertime >= '" + start + "' and u.registertime <= '"
+					+ end + "'";
+			return getCount(sql);
+		} else {
+			return getCount("select id from User");
+		}
+
 	}
 
 }

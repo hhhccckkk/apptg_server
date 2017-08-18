@@ -8,11 +8,40 @@ import com.hck.apptg.util.LogUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction extends BaseAction {
+	private static final int TODY_SIZE = 1;
+	private static final int ZUOTIAN_SIZE = 2;
 	private List<User> users;
 	private UserDaoServer uServer;
 	private long id;
 	private User user;
+    private String key;
+    private int size;
+    private int type;
     
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 	public List<User> getUsers() {
 		return users;
@@ -54,6 +83,19 @@ public class UserAction extends BaseAction {
 
 	public String getOneUser() {
 		user = uServer.getUser(id);
+		return SUCCESS;
+	}
+	
+	public String searchUser(){
+		users = uServer.searchUser(key);
+		if (users!=null &&!users.isEmpty()) {
+			user=users.get(0);
+		}
+		return SUCCESS;
+	}
+	
+	public String getUserSize(){
+		size=(int) uServer.getUserSize(type);
 		return SUCCESS;
 	}
 

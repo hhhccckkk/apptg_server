@@ -90,10 +90,10 @@
 		<div id="content">
 			<div class="space"></div>
 			<div class="menu fleft">
-				
+				<ul>
+					<li class="subMenuTitle">功能列表</li>
 					<li class="subMenu"><a href="#">用户管理</a>
 						<ul class="yingcang">
-							<li><a href="addUser.jsp" target="right">增加用户</a></li>
 							<li><a href="searchUser.jsp" target="right">搜索用户</a></li>
 							<li><a href="getUserSize?type=0" target="right">用户统计</a></li>
 							<li><a href="getUserSize?type=1" target="right">今天新增用户</a></li>
@@ -101,23 +101,22 @@
 						</ul></li>
 					<li class="subMenu"><a href="#">资源管理</a>
 						<ul class="yingcang">
-							<li><a href="addOrder.jsp" target="right">增加资源</a></li>
-							<li><a href="searchOrder.jsp" target="right">搜索资源</a></li>
+							<li><a href="addzy.jsp" target="right">增加资源</a></li>
+							<li><a href="searchZiYuan.jsp" target="right">搜索资源</a></li>
 						</ul></li>
 					<li class="subMenu"><a href="#">渠道管理</a>
 						<ul class="yingcang">
-							<li><a href="addOrder.jsp" target="right">增加渠道</a></li>
-							<li><a href="searchOrder.jsp" target="right">搜索渠道</a></li>
+							<li><a href="addqd.jsp" target="right">增加渠道</a></li>
 						</ul></li>
 					 
 					<li class="subMenu"><a href="#">举报信息</a>
 						<ul class="yingcang">
-							<li><a href="getHongBao?page=1" target="right">举报信息</a></li>
+							<li><a href="getJuBao?page=1" target="right">举报信息</a></li>
 						</ul></li>
 					<li class="subMenu"><a href="#">信息管理</a>
 						<ul class="yingcang">
 
-							<li><a href="getDX?page=1&type=1" target="right">信息列表</a></li>
+							<li><a href="getTZ?page=1&type=1" target="right">信息列表</a></li>
 							<li><a href="addMessage.jsp" target="right">增加短信息</a></li>
 						</ul></li>
 

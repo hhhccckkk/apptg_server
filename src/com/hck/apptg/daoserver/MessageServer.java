@@ -26,4 +26,6 @@ public class MessageServer extends HibernateDaoSupport {
 	public void addMessage(Message message) {
 		getHibernateTemplate().save(message);
 	}
+
+	
 }

@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.hck.apptg.bean.User;
 import com.hck.apptg.bean.Ziyuan;
 import com.hck.apptg.vo.Contans;
 import com.opensymphony.xwork2.ActionContext;
@@ -160,6 +161,13 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 			getHibernateTemplate().flush();
 		}
 		return true;
+	}
+	
+	public List<Ziyuan> searchUser(String key){
+		String sqlString = "from Ziyuan u where u.title like '%"+key+"'";
+		ActionContext.getContext().getSession()
+		.put("ziyuanSize", getZiyuan(sqlString));
+		return getHibernateTemplate().find(sqlString);
 	}
 
 }

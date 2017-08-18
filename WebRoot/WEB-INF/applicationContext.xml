@@ -37,7 +37,8 @@
 				<value>com/hck/apptg/bean/Jinbi.hbm.xml</value>
 				<value>com/hck/apptg/bean/Message.hbm.xml</value>
 				<value>com/hck/apptg/bean/Tongzhi.hbm.xml</value>
-				<value>com/hck/apptg/bean/Jubao.hbm.xml</value></list>
+				<value>com/hck/apptg/bean/Jubao.hbm.xml</value>
+			</list>
 		</property>
 	</bean>
 
@@ -183,12 +184,36 @@
 			<ref bean="fankuiDao" />
 		</property>
 	</bean>
-	
-	
-	
-	
-	
-	
+
+	<!-- pc举报action -->
+	<bean id="JuBaoAction" class="com.hck.apptg.pc.action.JuBaoAction"
+		scope="prototype">
+		<property name="mJuBaoServer">
+			<ref bean="jbDao" />
+		</property>
+	</bean>
+
+	<!-- pc消息action -->
+	<bean id="MessageAction" class="com.hck.apptg.pc.action.MessageAction"
+		scope="prototype">
+		<property name="messageServer">
+			<ref bean="msgDao" />
+		</property>
+	</bean>
+
+	<!-- pc通知action -->
+	<bean id="TongZhiAction" class="com.hck.apptg.pc.action.TongZhiAction"
+		scope="prototype">
+		<property name="zTongZhiServer">
+			<ref bean="TZDao" />
+		</property>
+	</bean>
+
+
+
+
+
+
 
 
 	<!-- 手机用action -->
@@ -289,7 +314,7 @@
 			<ref bean="userDao" />
 		</property>
 	</bean>
-	
+
 	<!-- 兑吧处理兑换action -->
 	<bean id="JuBaoActionP" class="com.hck.apptg.phone.action.JuBaoAction"
 		scope="prototype">
