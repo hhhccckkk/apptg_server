@@ -4,7 +4,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.hck.apptg.bean.Fensi;
+import com.hck.apptg.bean.Tongzhi;
 import com.hck.apptg.daoserver.FenSiServer;
+import com.hck.apptg.daoserver.TongZhiServer;
 import com.hck.apptg.daoserver.UserDaoServer;
 import com.hck.apptg.util.LogUtil;
 import com.hck.apptg.vo.Contans;
@@ -12,7 +14,16 @@ import com.hck.apptg.vo.Contans;
 public class FenSiAction extends BaseAction {
 	private FenSiServer fServer;
     private UserDaoServer uServer;
+    private TongZhiServer mTongZhiServer;
     
+	public TongZhiServer getmTongZhiServer() {
+		return mTongZhiServer;
+	}
+
+	public void setmTongZhiServer(TongZhiServer mTongZhiServer) {
+		this.mTongZhiServer = mTongZhiServer;
+	}
+
 	public UserDaoServer getuServer() {
 		return uServer;
 	}
@@ -88,12 +99,20 @@ public class FenSiAction extends BaseAction {
 			fensi.setName(name);
 			fensi.setFname(fname);
 			fensi.setFtouxiang(ftx);
-			fensi.setTime(new Timestamp(System.currentTimeMillis()).toString());
+			String timeString=new Timestamp(System.currentTimeMillis()).toString();
+			fensi.setTime(timeString);
 			fensi.setTouxiang(tx);
 			boolean isok = fServer.addFenSi(fensi);
 			if (isok) {
 				uServer.updateUserFenSi(uid,1);
 				uServer.updateUserGuangZhu(fuid);
+				Tongzhi tongzhi=new Tongzhi();
+				tongzhi.setContent(name+"关注了您");
+				tongzhi.setHuid(fuid);
+				tongzhi.setUid(uid);
+				tongzhi.setShijian(timeString);
+				tongzhi.setType(1);
+				mTongZhiServer.addTz(tongzhi);
 				json.put("code", Contans.SUCCESS);
 				json.put("type", 1);
 			} else {

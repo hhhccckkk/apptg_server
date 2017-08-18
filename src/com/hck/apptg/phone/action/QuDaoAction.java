@@ -2,6 +2,7 @@ package com.hck.apptg.phone.action;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.jws.soap.SOAPBinding.Use;
@@ -15,8 +16,8 @@ import com.hck.apptg.vo.QudaoData;
 
 public class QuDaoAction extends BaseAction {
 	private QuDaoServer mDaoServer;
-    private JinBiServer jinBiServer;
-    
+	private JinBiServer jinBiServer;
+
 	public JinBiServer getJinBiServer() {
 		return jinBiServer;
 	}
@@ -37,6 +38,13 @@ public class QuDaoAction extends BaseAction {
 		init();
 		int key = getIntData("key");
 		List<Qudao> qudaos = mDaoServer.getQudaos(page, key);
+		if (key <= 0 && page==1) {
+			List<Qudao> tj = mDaoServer.getTj();
+			if (tj != null && !tj.isEmpty()) {
+				qudaos.addAll(tj);
+				Collections.sort(qudaos);
+			}
+		}
 		if (qudaos != null && !qudaos.isEmpty()) {
 			json.put("code", Contans.SUCCESS);
 			json.put("data", changeData(qudaos));
@@ -56,7 +64,7 @@ public class QuDaoAction extends BaseAction {
 		String qq = getStringData("qq");
 		String wx = getStringData("wx");
 		String phone = getStringData("phone");
-		int dengji=getIntData("dengji");
+		int dengji = getIntData("dengji");
 		String wangzhi = getStringData("wangzhi");
 		Qudao qudao = new Qudao();
 		qudao.setContent(content);
@@ -68,6 +76,8 @@ public class QuDaoAction extends BaseAction {
 		qudao.setTitle(title);
 		qudao.setWeixin(wx);
 		qudao.setDengji(dengji);
+		qudao.setIsok(1);
+		qudao.setIstj(0);
 		qudao.setLianjie(wangzhi);
 		qudao.setShijian(new Timestamp(System.currentTimeMillis()).toString());
 		User user = new User();
@@ -84,6 +94,7 @@ public class QuDaoAction extends BaseAction {
 	}
 
 	private List<QudaoData> changeData(List<Qudao> qudaos) {
+		
 		List<QudaoData> datas = new ArrayList<QudaoData>();
 		for (Qudao qudao : qudaos) {
 			QudaoData qudaoData = new QudaoData();
@@ -106,6 +117,7 @@ public class QuDaoAction extends BaseAction {
 			qudaoData.setXitong(qudao.getXitong());
 			qudaoData.setLianjie(qudao.getLianjie());
 			qudaoData.setFensi(user.getFensi());
+		     qudaoData.setIstj(qudao.getIstj());
 			datas.add(qudaoData);
 		}
 		return datas;

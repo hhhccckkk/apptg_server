@@ -4,19 +4,22 @@ import java.util.List;
 
 import com.hck.apptg.bean.User;
 import com.hck.apptg.daoserver.UserDaoServer;
+import com.hck.apptg.util.LogUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction extends BaseAction {
 	private List<User> users;
 	private UserDaoServer uServer;
 	private long id;
+	private User user;
+    
 
-	public long getId() {
-		return id;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public UserDaoServer getuServer() {
@@ -27,12 +30,20 @@ public class UserAction extends BaseAction {
 		this.uServer = uServer;
 	}
 
-	public List<User> getUsers() {
-		return users;
+	public long getId() {
+		return id;
 	}
 
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getusers() {
@@ -41,8 +52,10 @@ public class UserAction extends BaseAction {
 		return SUCCESS;
 	}
 
-	public String deleteUser() {
-		
+	public String getOneUser() {
+		user = uServer.getUser(id);
 		return SUCCESS;
 	}
+
+	
 }

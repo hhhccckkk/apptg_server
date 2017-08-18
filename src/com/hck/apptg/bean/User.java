@@ -39,6 +39,16 @@ public class User implements java.io.Serializable {
 	private String qqid;
 	private Integer usertype;
 	private Long guanzhu;
+	private String xinghao;
+	
+	public String getXinghao() {
+		return xinghao;
+	}
+
+	public void setXinghao(String xinghao) {
+		this.xinghao = xinghao;
+	}
+
 	private Set huities = new HashSet(0);
 	private Set ziyuans = new HashSet(0);
 	private Set qudaos = new HashSet(0);

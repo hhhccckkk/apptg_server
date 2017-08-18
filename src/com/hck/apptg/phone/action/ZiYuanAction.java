@@ -2,6 +2,7 @@ package com.hck.apptg.phone.action;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.hck.apptg.bean.User;
@@ -84,12 +85,24 @@ public class ZiYuanAction extends BaseAction {
 	/**
 	 * 默认获取资源信息
 	 */
+	@SuppressWarnings("unchecked")
 	public void getZiYuanInfos() {
 		init();
+		List<Ziyuan> tj=null;
+		if (page==1) {
+			tj=mZiYuanDaoServer.getZiyuanTJ();
+		}
 		List<Ziyuan> ziyuans = mZiYuanDaoServer
 				.getZiYuanInfo(page, DEFAULT_NUM);
 		if (ziyuans != null && !ziyuans.isEmpty()) {
-			json.put("data", changeData(ziyuans));
+			if (tj!=null && !tj.isEmpty()) {
+				tj.addAll(ziyuans);
+			}
+			else {
+				tj=ziyuans;
+			}
+			Collections.sort(tj);
+			json.put("data", changeData(tj));
 			json.put("code", Contans.SUCCESS);
 		} else {
 			json.put("code", Contans.ERROR);
@@ -100,6 +113,7 @@ public class ZiYuanAction extends BaseAction {
 	/**
 	 * 更具关键字检索资源
 	 */
+	@SuppressWarnings("unchecked")
 	public void getZiyuans() {
 		init();
 		int key = getIntData("key");

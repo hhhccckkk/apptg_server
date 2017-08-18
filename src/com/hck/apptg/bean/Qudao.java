@@ -4,7 +4,7 @@ package com.hck.apptg.bean;
  * Qudao entity. @author MyEclipse Persistence Tools
  */
 
-public class Qudao implements java.io.Serializable {
+public class Qudao implements java.io.Serializable ,Comparable{
 
 	// Fields
 
@@ -22,8 +22,25 @@ public class Qudao implements java.io.Serializable {
 	private Long huifunum;
 	private String shijian;
 	private Integer dengji;
+    private int isok;
+    private int istj;
+    
 
-	// Constructors
+	public int getIsok() {
+		return isok;
+	}
+
+	public void setIsok(int isok) {
+		this.isok = isok;
+	}
+
+	public int getIstj() {
+		return istj;
+	}
+
+	public void setIstj(int istj) {
+		this.istj = istj;
+	}
 
 	/** default constructor */
 	public Qudao() {
@@ -162,5 +179,15 @@ public class Qudao implements java.io.Serializable {
 	public void setDengji(Integer dengji) {
 		this.dengji = dengji;
 	}
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Qudao) {
+			Qudao emp = (Qudao) o;
+			return emp.istj-this.istj;
+		}
+		return 0;
+
+	}
+	
 
 }

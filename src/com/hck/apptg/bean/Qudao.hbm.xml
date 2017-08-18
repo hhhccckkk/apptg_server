@@ -49,5 +49,11 @@
         <property name="dengji" type="java.lang.Integer">
             <column name="dengji" />
         </property>
+        <property name="isok" type="java.lang.Integer">
+            <column name="isok" />
+        </property>
+        <property name="istj" type="java.lang.Integer">
+            <column name="istj" />
+        </property>
     </class>
 </hibernate-mapping>

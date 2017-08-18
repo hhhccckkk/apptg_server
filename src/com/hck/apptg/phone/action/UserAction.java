@@ -42,6 +42,7 @@ public class UserAction extends BaseAction {
 		String weixin = getStringData("weixin");
 		int sex = getIntData("sex");
 		int type = getIntData("type");
+		String xinghao=getStringData("xinghao");
 		User oldUser = uDao.userExit(new User(qqIdString, jingdu, weidu));
 		if (oldUser == null) {
 			User newUser = new User();
@@ -58,6 +59,7 @@ public class UserAction extends BaseAction {
 			newUser.setJingdu(jingdu);
 			newUser.setWeidu(weidu);
 			newUser.setNicheng(nicheng);
+			newUser.setXinghao(xinghao);
 			newUser.setName(nameString);
 			newUser.setPhone(phoneString);
 			newUser.setPhonetype(phoneTypeString);

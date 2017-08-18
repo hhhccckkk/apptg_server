@@ -4,7 +4,7 @@ package com.hck.apptg.bean;
  * Ziyuan entity. @author MyEclipse Persistence Tools
  */
 
-public class Ziyuan implements java.io.Serializable {
+public class Ziyuan implements java.io.Serializable, Comparable {
 
 	// Fields
 
@@ -202,6 +202,16 @@ public class Ziyuan implements java.io.Serializable {
 
 	public void setXitong(String xitong) {
 		this.xitong = xitong;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Ziyuan) {
+			Ziyuan emp = (Ziyuan) o;
+			return emp.istj-this.istj;
+		}
+		return 0;
+
 	}
 
 }

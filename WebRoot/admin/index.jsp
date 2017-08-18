@@ -69,9 +69,9 @@
 				<ul>
 					<div class="nav-left fleft"></div>
 					<li><a href="getusers?page=1" target=right>用户</a></li>
-					<li><a href="getEndOrder?page=1" target=right>已处理订单</a></li>
-					<li><a href="showOverOrder?page=1" target=right>未处理订单</a></li>
-					<li><a href="getMyOrder?page=1" target=right>我的订单</a></li>
+					<li><a href="getZiYuans?page=1" target=right>资源</a></li>
+					<li><a href="getQuDao?page=1" target=right>渠道</a></li>
+					<li><a href="getHuiTie?page=1" target=right>回帖</a></li>
 					<li><a href="getFanKui?" target=right>反馈信息</a></li>
 					<div class="nav-right fleft"></div>
 				</ul>
@@ -90,47 +90,7 @@
 		<div id="content">
 			<div class="space"></div>
 			<div class="menu fleft">
-				<ul>
-					<li class="subMenuTitle">功能列表</li>
-					<li class="subMenu"><a href="#">类别管理</a>
-						<ul class="yingcang">
-							<li><a href="addKind.jsp" target="right">增加赚钱区</a></li>
-						</ul></li>
-					<!--     <li class="subMenu"><a href="#">我的应用管理</a>
-            	<ul class="yingcang">
-                    <li><a href="addApp.jsp" target="right">增加应用</a></li>
-                    <li><a href="getAllApps?page=1" target="right">全部应用</a></li>
-                </ul>
-            </li>-->
-					<li class="subMenu"><a href="#">赚钱记录</a>
-						<ul class="yingcang">
-							<li><a href="getMoneyAllP?type=1&page=1" target="right">今天赚钱记录</a></li>
-
-
-							<li><a href="getMoneyAllP2?type=2&page=1" target="right">昨天赚钱记录</a></li>
-
-
-							<li><a href="getMoneyAllP3?type=3&page=1" target="right">前天赚钱记录</a></li>
-						</ul></li>
-
-					<li class="subMenu"><a href="#">活动信息</a>
-						<ul class="yingcang">
-							<li><a href="getHuoDong?type=1&page=1" target="right">今天参加活动</a></li>
-
-
-							<li><a href="getHuoDong?type=2&page=1" target="right">昨天参加活动</a></li>
-
-
-							<li><a href="getHuoDong?type=3&page=1" target="right">全部活动</a></li>
-						</ul></li>
-
-
-					<li class="subMenu"><a href="#">赚钱排行</a>
-						<ul class="yingcang">
-							<li><a href="getRank1?page=1" target="right">赚钱总榜</a></li>
-							<li><a href="getRank2?page=1" target="right">推广总榜</a></li>
-						</ul></li>
-
+				
 					<li class="subMenu"><a href="#">用户管理</a>
 						<ul class="yingcang">
 							<li><a href="addUser.jsp" target="right">增加用户</a></li>
@@ -139,49 +99,25 @@
 							<li><a href="getUserSize?type=1" target="right">今天新增用户</a></li>
 							<li><a href="getUserSize?type=2" target="right">昨天新增用户</a></li>
 						</ul></li>
-					<li class="subMenu"><a href="#">订单管理</a>
+					<li class="subMenu"><a href="#">资源管理</a>
 						<ul class="yingcang">
-							<li><a href="addOrder.jsp" target="right">增加订单</a></li>
-							<li><a href="searchOrder.jsp" target="right">搜索订单</a></li>
+							<li><a href="addOrder.jsp" target="right">增加资源</a></li>
+							<li><a href="searchOrder.jsp" target="right">搜索资源</a></li>
 						</ul></li>
-					<li class="subMenu"><a href="#">推广包管理</a>
+					<li class="subMenu"><a href="#">渠道管理</a>
 						<ul class="yingcang">
-							<li><a href="getTGBSize" target="right">推广包数量</a></li>
-							<li><a href="getTuiGuangBaos?page=1&type=1" target="right">多到少</a></li>
-							<li><a href="getTuiGuangBaos?page=1&type=2" target="right">少到多</a></li>
-							<li><a href="getTuiGuangBaos?page=1&type=3" target="right">一周小于10</a></li>
+							<li><a href="addOrder.jsp" target="right">增加渠道</a></li>
+							<li><a href="searchOrder.jsp" target="right">搜索渠道</a></li>
 						</ul></li>
-					<!--  
-           <li class="subMenu"><a href="#">版本管理</a>
-            	<ul class="yingcang">
-                    <li><a href="addVison.jsp" target="right">增加版本</a></li>
-                     <li><a href="getVison" target="right">版本信息</a></li>
-                </ul>
-            </li>
-            <li class="subMenu"><a href="#">新闻管理</a>
-            	<ul class="yingcang">
-                    <li><a href="addNew.jsp" target="right">增加新闻</a></li>
-                    <li><a href="getNews" target="right">查看新闻</a></li>
-                </ul>
-            </li>-->
-					<li class="subMenu"><a href="#">红包管理</a>
+					 
+					<li class="subMenu"><a href="#">举报信息</a>
 						<ul class="yingcang">
-							<li><a href="getHongBao?page=1" target="right">全部红包数</a></li>
-							<li><a href="addHongBao.jsp" target="right">增加红包</a></li>
+							<li><a href="getHongBao?page=1" target="right">举报信息</a></li>
 						</ul></li>
-					<li class="subMenu"><a href="#">短信息管理</a>
+					<li class="subMenu"><a href="#">信息管理</a>
 						<ul class="yingcang">
 
-							<li><a href="getDX?page=1&type=1" target="right">系统信息</a></li>
-
-
-							<li><a href="getDX?page=1&type=2" target="right">用户聊天信息</a></li>
-
-
-
-							<li><a href="getDX?page=1&type=3" target="right">订单信息</a></li>
-
-
+							<li><a href="getDX?page=1&type=1" target="right">信息列表</a></li>
 							<li><a href="addMessage.jsp" target="right">增加短信息</a></li>
 						</ul></li>
 

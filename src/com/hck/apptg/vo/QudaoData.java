@@ -1,5 +1,8 @@
 package com.hck.apptg.vo;
 
+import com.hck.apptg.bean.Qudao;
+import com.hck.apptg.bean.Ziyuan;
+
 
 public class QudaoData implements java.io.Serializable {
 	private Long id;
@@ -20,7 +23,16 @@ public class QudaoData implements java.io.Serializable {
 	private long jifeng;
 	private long uid;
     private long fensi;
+    private int istj;
     
+	public int getIstj() {
+		return istj;
+	}
+
+	public void setIstj(int istj) {
+		this.istj = istj;
+	}
+
 	public long getFensi() {
 		return fensi;
 	}
@@ -164,6 +176,6 @@ public class QudaoData implements java.io.Serializable {
 	public void setJifeng(long jifeng) {
 		this.jifeng = jifeng;
 	}
-	
 
+	
 }

@@ -155,6 +155,40 @@
 			<ref bean="userDao" />
 		</property>
 	</bean>
+	<!-- pc资源action -->
+	<bean id="ZiYuanAction" class="com.hck.apptg.pc.action.ZiYuanAction"
+		scope="prototype">
+		<property name="ziYuanDaoServer">
+			<ref bean="ziyuanDao" />
+		</property>
+	</bean>
+	<!-- pc渠道action -->
+	<bean id="QuDaoAction" class="com.hck.apptg.pc.action.QuDaoAction"
+		scope="prototype">
+		<property name="quDaoServer">
+			<ref bean="qudaoDao" />
+		</property>
+	</bean>
+	<!-- pc回帖action -->
+	<bean id="HuiTieAction" class="com.hck.apptg.pc.action.HuiTieAction"
+		scope="prototype">
+		<property name="mHUiTieServer">
+			<ref bean="huitieDao" />
+		</property>
+	</bean>
+	<!-- pc反馈action -->
+	<bean id="FanKuiAction" class="com.hck.apptg.pc.action.FanKuiAction"
+		scope="prototype">
+		<property name="mKuiServer">
+			<ref bean="fankuiDao" />
+		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
 
 
 	<!-- 手机用action -->
@@ -208,6 +242,9 @@
 		scope="prototype">
 		<property name="fServer">
 			<ref bean="fensiDao" />
+		</property>
+		<property name="mTongZhiServer">
+			<ref bean="TZDao" />
 		</property>
 		<property name="uServer">
 			<ref bean="userDao" />
