@@ -7,6 +7,7 @@ import java.util.Map;
 import com.hck.apptg.bean.User;
 import com.hck.apptg.daoserver.UserDaoServer;
 import com.hck.apptg.duiba.CreditTool;
+import com.hck.apptg.util.LogUtil;
 import com.hck.apptg.vo.Contans;
 import com.hck.apptg.vo.UserData;
 
@@ -31,6 +32,7 @@ public class UserAction extends BaseAction {
 		String nameString = getStringData("name");
 		String nicheng = getStringData("nicheng");
 		String address = getStringData("address");
+		String password = getStringData("password");
 		double jingdu = getDoubleData("jindu");
 		double weidu = getDoubleData("weidu");
 		String touxiang = getStringData("touxiang");
@@ -42,9 +44,80 @@ public class UserAction extends BaseAction {
 		String weixin = getStringData("weixin");
 		int sex = getIntData("sex");
 		int type = getIntData("type");
-		String xinghao=getStringData("xinghao");
+		String xinghao = getStringData("xinghao");
 		User oldUser = uDao.userExit(new User(qqIdString, jingdu, weidu));
 		if (oldUser == null) {
+			LogUtil.log("oldUser == null");
+			User newUser = new User();
+			newUser.setAddress(address);
+			newUser.setFatienum(0);
+			newUser.setFensi(0l);
+			newUser.setGongsi(gongsi);
+			newUser.setImei(imei);
+			newUser.setIsok(1);
+			newUser.setIsvip(0);
+			newUser.setJieshao(jieshao);
+			newUser.setPassword(password);
+			newUser.setJifeng(0l);
+			newUser.setJinbi(10l);
+			newUser.setJingdu(jingdu);
+			newUser.setWeidu(weidu);
+			newUser.setNicheng(nicheng);
+			newUser.setXinghao(xinghao);
+			newUser.setName(nameString);
+			newUser.setPhone(phoneString);
+			newUser.setPhonetype(phoneTypeString);
+			newUser.setQq(qq);
+			newUser.setGuanzhu(0l);
+			newUser.setQqid(qqIdString);
+			newUser.setRegistertime(new Timestamp(System.currentTimeMillis())
+					.toString());
+			newUser.setSex(sex);
+			newUser.setTouxiang(touxiang);
+			newUser.setWeixin(weixin);
+			newUser.setUsertype(type); // 1:��Դ��2����
+			newUser = uDao.addUser(newUser);
+			newUser.setQqid(qqIdString.toLowerCase());
+			json.put("code", Contans.SUCCESS);
+			json.put("user", newUser);
+		} else {
+			if (oldUser.getIsok() == 1) {
+				json.put("code", Contans.SUCCESS);
+				json.put("user", changUser(oldUser));
+			} else {// �û�������
+				json.put("code", Contans.JINYONG);
+				json.put("user", changUser(oldUser));
+			}
+
+		}
+		write();
+	}
+
+	/**
+	 * 注册用户
+	 */
+	public void registerUser() {
+		init();
+		String imei = getStringData("imei");
+		String phoneString = getStringData("phone");
+		String nameString = getStringData("name");
+		String nicheng = getStringData("nicheng");
+		String address = getStringData("address");
+		double jingdu = getDoubleData("jindu");
+		double weidu = getDoubleData("weidu");
+		String touxiang = getStringData("touxiang");
+		String phoneTypeString = getStringData("phoneName");
+		String gongsi = getStringData("gongsi");
+		String jieshao = getStringData("jieshao");
+		String qqIdString = getStringData("qqId");
+		String qq = getStringData("qq");
+		String weixin = getStringData("weixin");
+		int sex = getIntData("sex");
+		int type = getIntData("type");
+		String xinghao = getStringData("xinghao");
+		boolean isExit = uDao.isUserExit(nameString);
+		if (!isExit) {
+			LogUtil.log("oldUser == null");
 			User newUser = new User();
 			newUser.setAddress(address);
 			newUser.setFatienum(0);
@@ -73,19 +146,28 @@ public class UserAction extends BaseAction {
 			newUser.setWeixin(weixin);
 			newUser.setUsertype(type); // 1:��Դ��2����
 			newUser = uDao.addUser(newUser);
+			newUser.setQqid(qqIdString.toLowerCase());
 			json.put("code", Contans.SUCCESS);
 			json.put("user", newUser);
 		} else {
-			if (oldUser.getIsok() == 1) {
-				json.put("code", Contans.SUCCESS);
-				json.put("user", changUser(oldUser));
-			} else {// �û�������
-				json.put("code", Contans.JINYONG);
-				json.put("user", changUser(oldUser));
-			}
+			json.put("code", Contans.USER_IS_EXIT);
 
 		}
 		write();
+	}
+
+	public void login() {
+		String userNameString = getStringData("name");
+		String password = getStringData("password");
+		User user = uDao.login(userNameString, password);
+		if (user == null) {
+			json.put("code", Contans.ERROR);
+		} else {
+			json.put("code", Contans.SUCCESS);
+			json.put("user", user);
+		}
+		write();
+
 	}
 
 	/**
@@ -160,17 +242,18 @@ public class UserAction extends BaseAction {
 		User user = uDao.getUser(uid);
 		if (uid <= 0 || user == null || user.getIsok() != 1) {
 			json.put("isok", false);
-		} else {		
+		} else {
 			CreditTool tool = new CreditTool(Contans.DUIHUANG_BA_KEY,
 					Contans.DUIHUANG_BA_Secret);
-			Map params=new HashMap();
-			params.put("uid",uid+"");
-			params.put("credits",user.getJinbi()+"");
+			Map params = new HashMap();
+			params.put("uid", uid + "");
+			params.put("credits", user.getJinbi() + "");
 			String redirect = "http://home.m.duiba.com.cn/chome/index";
-			if(redirect!=null){
-			    params.put("redirect",redirect);
+			if (redirect != null) {
+				params.put("redirect", redirect);
 			}
-			url=tool.buildUrlWithSign("http://www.duiba.com.cn/autoLogin/autologin?",params);
+			url = tool.buildUrlWithSign(
+					"http://www.duiba.com.cn/autoLogin/autologin?", params);
 			json.put("isok", true);
 			json.put("url", url);
 		}
@@ -187,9 +270,11 @@ public class UserAction extends BaseAction {
 				user.getIsok(), user.getIsvip(), user.getLogintime(),
 				user.getRegistertime(), user.getJifeng(), user.getJinbi(),
 				user.getGongsi(), user.getJieshao(), user.getFensi(),
-				user.getFatienum(), user.getQqid(), user.getUsertype());
+				user.getFatienum(), user.getQqid().toLowerCase(),
+				user.getUsertype());
 		userData.setId(user.getId());
 		userData.setGuanzhu(user.getGuanzhu());
 		return userData;
 	}
+
 }

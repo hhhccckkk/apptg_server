@@ -40,7 +40,7 @@ public class ZiYuanAction extends BaseAction {
 		long uid = getLongData("id");
 		String title = getStringData("title");
 		String content = getStringData("content");
-		int jiage = getIntData("jiage");
+		double jiage = getDoubleData("jiage");
 		String xitong = getStringData("xitong");
 		String jiesuantime = getStringData("jiesuantime");
 		String fabukind = getStringData("fabukind");
@@ -94,6 +94,7 @@ public class ZiYuanAction extends BaseAction {
 		}
 		List<Ziyuan> ziyuans = mZiYuanDaoServer
 				.getZiYuanInfo(page, DEFAULT_NUM);
+		long size=mZiYuanDaoServer.getZiyuanAllSize();
 		if (ziyuans != null && !ziyuans.isEmpty()) {
 			if (tj!=null && !tj.isEmpty()) {
 				tj.addAll(ziyuans);
@@ -102,6 +103,7 @@ public class ZiYuanAction extends BaseAction {
 				tj=ziyuans;
 			}
 			Collections.sort(tj);
+			json.put("size", size);
 			json.put("data", changeData(tj));
 			json.put("code", Contans.SUCCESS);
 		} else {
@@ -118,9 +120,12 @@ public class ZiYuanAction extends BaseAction {
 		init();
 		int key = getIntData("key");
 		List<Ziyuan> ziyuans = mZiYuanDaoServer.getZiyuans(page, key);
+		long size=mZiYuanDaoServer.getZiyuanAllSize();
 		if (ziyuans != null && !ziyuans.isEmpty()) {
+			json.put("size", size);
 			json.put("data", changeData(ziyuans));
 			json.put("code", Contans.SUCCESS);
+			
 		} else {
 			json.put("code", Contans.ERROR);
 		}

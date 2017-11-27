@@ -23,12 +23,14 @@ public class JuBaoAction extends BaseAction {
 		long buid = getLongData("buid");
 		String bContentString = getStringData("bcontent");
 		String bname = getStringData("bname");
+		long tid=getLongData("tid");
 		Jubao jubao = new Jubao();
 		jubao.setBcontent(bContentString);
 		jubao.setBname(bname);
 		jubao.setUid(uid);
 		jubao.setBuid(buid);
 		jubao.setBtime(new Timestamp(System.currentTimeMillis()).toString());
+		jubao.setTid(tid);
 		if (jServer.addJuBao(jubao)) {
 			json.put("code", true);
 		} else {

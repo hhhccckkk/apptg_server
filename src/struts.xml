@@ -31,6 +31,9 @@
 		<action name="getUserSize" class="UserAction" method="getUserSize">
 			<result name="success">showUserSize.jsp</result>
 		</action>
+		<action name="addUser" class="UserAction" method="addUser">
+			<result name="success">/admin/addUser.jsp</result>
+		</action>
 
 		<!-- 资源 -->
 		<action name="getZiYuans" class="ZiYuanAction" method="getZiYuans">
@@ -51,7 +54,7 @@
 			<result name="success">/admin/showZiYuan.jsp</result>
 		</action>
 		<!-- 渠道 -->
-		<action name="getQuDao" class="QuDaoAction" method="getQuDao">
+		<action name="getQuDao" class="QuDaoAction" method="getQuDaos">
 			<result name="success">showQuDao.jsp</result>
 		</action>
 		<action name="getUserQuDao" class="QuDaoAction" method="getUserQuDao">

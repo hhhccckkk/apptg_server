@@ -1,5 +1,6 @@
 package com.hck.apptg.daoserver;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 			sql = "from Ziyuan z order by z.jiage asc";
 			break;
 		case Contans.ANZHUO:
-			sql = "from Ziyuan z where z.xitong='安卓' order by z.id desc,z.istj desc";
+			sql = "from Ziyuan z where z.xitong='安卓' order by z.fabutime desc,z.istj desc";
 			break;
 		case Contans.IOS:
 			sql = "from Ziyuan z where z.xitong='IOS' order by z.id desc,z.istj desc";
@@ -62,7 +63,7 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 	}
 
 	public List<Ziyuan> getZiYuanInfo(int page, int num) {
-		String sql = "from Ziyuan z where z.isok=1 and z.istj=0 order by z.id desc,z.istj desc";
+		String sql = "from Ziyuan z where z.isok=1 and z.istj=0 order by z.fabutime desc,z.istj desc";
 		return getList(sql, page, num);
 	}
 
@@ -93,6 +94,10 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 
 	private int getZiyuan(String sql) {
 		return getHibernateTemplate().find(sql).size();
+	}
+	
+	public int getZiyuanAllSize(){
+		return getHibernateTemplate().find("from Ziyuan").size();
 	}
 
 	/**
@@ -145,6 +150,22 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 		}
 		return true;
 	}
+	
+	/**
+	 * 删除资源
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean updateZiYuanTime(Long id) {
+		Ziyuan ziyuan = (Ziyuan) getHibernateTemplate().get(Ziyuan.class, id);
+		if (ziyuan != null) {
+			ziyuan.setFabutime(new Timestamp(System.currentTimeMillis()).toString());
+			getHibernateTemplate().update(ziyuan);
+			getHibernateTemplate().flush();
+		}
+		return true;
+	}
 
 	/**
 	 * 修改推荐状态
@@ -164,7 +185,7 @@ public class ZiYuanDaoServer extends HibernateDaoSupport {
 	}
 	
 	public List<Ziyuan> searchUser(String key){
-		String sqlString = "from Ziyuan u where u.title like '%"+key+"'";
+		String sqlString = "from Ziyuan u where u.appName like '%"+key+"'";
 		ActionContext.getContext().getSession()
 		.put("ziyuanSize", getZiyuan(sqlString));
 		return getHibernateTemplate().find(sqlString);

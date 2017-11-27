@@ -141,5 +141,8 @@
 		<action name="duihuanResultP" class="OrderActionP" method="duihuanResult">
 			<result type="json">null</result>
 		</action>
+		<action name="getVersionP" class="VersionP" method="getVersion">
+			<result type="json">null</result>
+		</action>
 	</package>
 </struts>

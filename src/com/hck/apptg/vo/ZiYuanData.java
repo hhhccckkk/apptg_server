@@ -8,7 +8,7 @@ public class ZiYuanData {
 	private String title;
 	private String content;
 	private Integer isok;
-	private Integer jiage;
+	private double jiage;
 	private String xitong;
 	private String jiesuantime;
 	private String fabukind;
@@ -72,10 +72,11 @@ public class ZiYuanData {
 	public void setIsok(Integer isok) {
 		this.isok = isok;
 	}
-	public Integer getJiage() {
+	
+	public double getJiage() {
 		return jiage;
 	}
-	public void setJiage(Integer jiage) {
+	public void setJiage(double jiage) {
 		this.jiage = jiage;
 	}
 	public String getXitong() {

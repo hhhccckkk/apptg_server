@@ -8,16 +8,25 @@ import com.hck.apptg.bean.Huitie;
 import com.hck.apptg.bean.User;
 import com.hck.apptg.daoserver.HUiTieServer;
 import com.hck.apptg.daoserver.JinBiServer;
+import com.hck.apptg.daoserver.ZiYuanDaoServer;
 import com.hck.apptg.util.LogUtil;
 import com.hck.apptg.vo.Contans;
 import com.hck.apptg.vo.HuiTieData;
 
 public class HuiTieAction extends BaseAction {
 	private HUiTieServer hServer;
-    private JinBiServer jinBiServer;
-    
+	private JinBiServer jinBiServer;
+    private ZiYuanDaoServer ziYuanDaoServer;
 	public JinBiServer getJinBiServer() {
 		return jinBiServer;
+	}
+
+	public ZiYuanDaoServer getZiYuanDaoServer() {
+		return ziYuanDaoServer;
+	}
+
+	public void setZiYuanDaoServer(ZiYuanDaoServer ziYuanDaoServer) {
+		this.ziYuanDaoServer = ziYuanDaoServer;
 	}
 
 	public void setJinBiServer(JinBiServer jinBiServer) {
@@ -36,7 +45,7 @@ public class HuiTieAction extends BaseAction {
 		init();
 		long uid = getLongData("id");
 		long tid = getLongData("tid");
-		long buid=getLongData("buid");
+		long buid = getLongData("buid");
 		String yuantie = getStringData("yuantie");
 		String huitie1 = getStringData("huitie1");
 		String huitie = getStringData("huitie");
@@ -53,6 +62,7 @@ public class HuiTieAction extends BaseAction {
 		huitie2.setHuifu1(huitie1);
 		boolean isok = hServer.addHuiTie(huitie2);
 		if (isok) {
+			ziYuanDaoServer.updateZiYuanTime(tid);
 			boolean isok2 = jinBiServer.isAddJinBi(uid, 50, 10);
 			json.put("isok", isok2);
 			json.put("code", Contans.SUCCESS);
@@ -63,7 +73,7 @@ public class HuiTieAction extends BaseAction {
 		}
 		write();
 	}
-  
+
 	public void getHuiTies() {
 		init();
 		long tid = getLongData("tid");
@@ -77,7 +87,7 @@ public class HuiTieAction extends BaseAction {
 		}
 		write();
 	}
-	
+
 	public void getHuiFus() {
 		init();
 		long id = getLongData("uid");
@@ -113,6 +123,13 @@ public class HuiTieAction extends BaseAction {
 			huiTieDatas.add(huiTieData);
 		}
 		return huiTieDatas;
+	}
+
+	public void deleteHT() {
+		long id = getLongData("id");
+		boolean isok = hServer.deleteHuiTie(id);
+		json.put("isok", isok);
+		write();
 	}
 
 }

@@ -22,7 +22,7 @@
         <property name="isok" type="java.lang.Integer">
             <column name="isok" />
         </property>
-        <property name="jiage" type="java.lang.Integer">
+        <property name="jiage" type="java.lang.Double">
             <column name="jiage" />
         </property>
         <property name="jiesuantime" type="java.lang.String">

@@ -12,6 +12,15 @@ public class Jubao implements java.io.Serializable {
 	private String bname;
 	private String bcontent;
 	private String btime;
+    private long tid;
+    
+	public long getTid() {
+		return tid;
+	}
+
+	public void setTid(long tid) {
+		this.tid = tid;
+	}
 
 	public Long getId() {
 		return this.id;

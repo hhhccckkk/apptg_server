@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.hck.apptg.bean.Tongzhi;
+import com.hck.apptg.util.LogUtil;
 
 public class TongZhiServer extends HibernateDaoSupport {
 	public boolean addTz(Tongzhi tongzhi) {
@@ -31,6 +32,7 @@ public class TongZhiServer extends HibernateDaoSupport {
 			getHibernateTemplate().delete(tongzhi);
 			return true;
 		} catch (Exception e) {
+			LogUtil.log("eeee: "+e);
 			return false;
 		}
 

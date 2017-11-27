@@ -22,6 +22,7 @@ public class JinBiServer extends HibernateDaoSupport {
 			jinbi2.setShijian(new Timestamp(System.currentTimeMillis()));
 			jinbi2.setJinbi(point);
 			jinbi2.setUid(uid);
+			jinbi2.setJifen(jifen);
 			getHibernateTemplate().save(jinbi2);
 			updateUser(uid, jifen, point);
 			return true;
@@ -31,17 +32,16 @@ public class JinBiServer extends HibernateDaoSupport {
 		LogUtil.log("今天吗?" + isJinT);
 
 		if (!isJinT) {
-			jinbi.setJinbi(jifen);
+			jinbi.setJinbi(point);
 			jinbi.setShijian(new Timestamp(System.currentTimeMillis()));
 			getHibernateTemplate().update(jinbi);
 			updateUser(uid, jifen, point);
 			return true;
 		} else {
-
 			if (jinbi.getJinbi() > 100) {
 				return false;
 			} else {
-				jinbi.setJinbi(jinbi.getJinbi() + jifen);
+				jinbi.setJinbi(jinbi.getJinbi() + point);
 				getHibernateTemplate().update(jinbi);
 				updateUser(uid, jifen, point);
 				return true;

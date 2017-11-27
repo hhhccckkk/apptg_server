@@ -22,5 +22,6 @@
         <property name="uid" type="java.lang.Long">
             <column name="uid" />
         </property>
+        
     </class>
 </hibernate-mapping>

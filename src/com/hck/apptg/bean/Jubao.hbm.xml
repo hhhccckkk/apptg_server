@@ -24,5 +24,8 @@
 		<property name="btime" type="java.lang.String">
 			<column name="btime" />
 		</property>
+		 <property name="tid" type="java.lang.Long">
+            <column name="tid" />
+        </property>
 	</class>
 </hibernate-mapping>

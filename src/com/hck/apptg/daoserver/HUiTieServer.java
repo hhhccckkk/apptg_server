@@ -35,7 +35,7 @@ public class HUiTieServer extends HibernateDaoSupport {
 	@SuppressWarnings("unchecked")
 	public List<Huitie> getHuiFus(long uid) {
 		String sqlString = "from Huitie h where h.buid=" + uid
-				+ " order by h.id desc ";
+				+ " or h.user.id="+uid+" order by h.id desc ";
 		return getHibernateTemplate().find(sqlString);
 	}
 
@@ -81,9 +81,15 @@ public class HUiTieServer extends HibernateDaoSupport {
 		return getList(sql, page, 20);
 	}
 
-	public void deleteHuiTie(long id) {
-		getHibernateTemplate().delete(getHuiTie(id));
-		getHibernateTemplate().flush();
+	public boolean deleteHuiTie(long id) {
+		try {
+			getHibernateTemplate().delete(getHuiTie(id));
+			getHibernateTemplate().flush();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
 	}
 
 }

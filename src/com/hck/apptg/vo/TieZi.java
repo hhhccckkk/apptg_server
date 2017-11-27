@@ -9,7 +9,7 @@ public class TieZi extends QudaoData{
   private String title;
   private String time;
   private String appName;
-  private int jiage;
+  private double jiage;
   private String jiesuan;
   private int isTuiJian;
   
@@ -26,10 +26,11 @@ public void setAppName(String appName) {
 	this.appName = appName;
 }
 
-public int getJiage() {
+
+public double getJiage() {
 	return jiage;
 }
-public void setJiage(int jiage) {
+public void setJiage(double jiage) {
 	this.jiage = jiage;
 }
 public String getJiesuan() {

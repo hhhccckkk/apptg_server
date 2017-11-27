@@ -6,18 +6,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.aspectj.apache.bcel.generic.RET;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.hck.apptg.bean.User;
 import com.hck.apptg.bean.Ziyuan;
+import com.hck.apptg.util.LogUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 public class UserDaoServer extends HibernateDaoSupport {
 	private static final int TODY_SIZE = 1;
 	private static final int ZUOTIAN_SIZE = 2;
+
 	public User addUser(User user) {
+		LogUtil.log("addUseraddUseraddUseraddUser");
 		if (user != null) {
 			try {
 				long id = (Long) getHibernateTemplate().save(user);
@@ -38,14 +42,12 @@ public class UserDaoServer extends HibernateDaoSupport {
 			String sqlString = "from User u where u.qqid='" + user.getQqid()
 					+ "'";
 			User user2 = null;
+			@SuppressWarnings("unchecked")
 			List<User> users = getHibernateTemplate().find(sqlString);
 			if (users == null || users.isEmpty()) {
 				return null;
 			} else {
 				user2 = users.get(0);
-				user2.setJingdu(user.getJingdu());
-				user2.setWeidu(user.getWeidu());
-				updateUser(user2);
 			}
 			return user2;
 		} catch (Exception e) {
@@ -53,6 +55,39 @@ public class UserDaoServer extends HibernateDaoSupport {
 			return null;
 		}
 
+	}
+
+	public boolean isUserExit(String zhanghao) {
+		try {
+			String sqlString = "from User u where u.name='" + zhanghao + "'";
+			User user2 = null;
+			@SuppressWarnings("unchecked")
+			List<User> users = getHibernateTemplate().find(sqlString);
+			if (users == null || users.isEmpty()) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			System.out.println("userExit: " + e);
+			return false;
+		}
+
+	}
+
+	public User login(String name, String password) {
+		try {
+			String sqlString = "from User u where u.name='" + name + "'"
+					+ " and u.password='" + password + "'";
+			@SuppressWarnings("unchecked")
+			List<User> users = getHibernateTemplate().find(sqlString);
+			if (users == null || users.isEmpty()) {
+				return null;
+			}
+			return users.get(0);
+		} catch (Exception e) {
+			System.out.println("userExit: " + e);
+			return null;
+		}
 	}
 
 	private User updateUser(User user) {
@@ -182,14 +217,14 @@ public class UserDaoServer extends HibernateDaoSupport {
 
 		return this.getHibernateTemplate().find(sql).size();
 	}
-	
-	public List<User> searchUser(String key){
-		String sqlString = "from User u where u.nicheng like '%"+key+"'";
+
+	public List<User> searchUser(String key) {
+		String sqlString = "from User u where u.nicheng like '%" + key + "'";
 		ActionContext.getContext().getSession()
-		.put("userSize", getCount(sqlString));
+				.put("userSize", getCount(sqlString));
 		return getHibernateTemplate().find(sqlString);
 	}
-	
+
 	public long getUserSize(int type) {
 		Date endDate = new Date();
 		Calendar cl = Calendar.getInstance();
@@ -205,8 +240,8 @@ public class UserDaoServer extends HibernateDaoSupport {
 			String start = dd.format(startDate);
 			String end = dd.format(endDate);
 
-			sql = "from User u where u.registertime >= '" + start + "' and u.registertime <= '"
-					+ end + "'";
+			sql = "from User u where u.registertime >= '" + start
+					+ "' and u.registertime <= '" + end + "'";
 			return getCount(sql);
 		} else {
 			return getCount("select id from User");

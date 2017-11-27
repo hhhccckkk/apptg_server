@@ -188,6 +188,18 @@ public class Qudao implements java.io.Serializable ,Comparable{
 		return 0;
 
 	}
+
+	@Override
+	public String toString() {
+		return "Qudao [id=" + id + ", user=" + user + ", leixing=" + leixing
+				+ ", xitong=" + xitong + ", liangji=" + liangji + ", qq=" + qq
+				+ ", weixin=" + weixin + ", phone=" + phone + ", lianjie="
+				+ lianjie + ", content=" + content + ", title=" + title
+				+ ", huifunum=" + huifunum + ", shijian=" + shijian
+				+ ", dengji=" + dengji + ", isok=" + isok + ", istj=" + istj
+				+ "]";
+	}
+	
 	
 
 }

@@ -78,7 +78,7 @@ public class TieZiAction extends BaseAction {
 				tieZi.setName(qudao.getUser().getNicheng());
 				tieZi.setTime(qudao.getShijian());
 				tieZi.setXitong(qudao.getXitong());
-				tieZi.setLiangji(qudao.getLianjie());
+				tieZi.setLiangji(qudao.getLiangji());
 				tieZi.setJifeng(qudao.getUser().getJifeng());
 				tieZis.add(tieZi);
 			}

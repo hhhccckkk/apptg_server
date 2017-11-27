@@ -1,6 +1,8 @@
 package com.hck.apptg.pc.action;
 
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Random;
 
 import com.hck.apptg.bean.User;
 import com.hck.apptg.daoserver.UserDaoServer;
@@ -14,10 +16,9 @@ public class UserAction extends BaseAction {
 	private UserDaoServer uServer;
 	private long id;
 	private User user;
-    private String key;
-    private int size;
-    private int type;
-    
+	private String key;
+	private int size;
+	private int type;
 
 	public int getSize() {
 		return size;
@@ -85,19 +86,57 @@ public class UserAction extends BaseAction {
 		user = uServer.getUser(id);
 		return SUCCESS;
 	}
-	
-	public String searchUser(){
+
+	public String searchUser() {
 		users = uServer.searchUser(key);
-		if (users!=null &&!users.isEmpty()) {
-			user=users.get(0);
+		if (users != null && !users.isEmpty()) {
+			user = users.get(0);
 		}
 		return SUCCESS;
 	}
-	
-	public String getUserSize(){
-		size=(int) uServer.getUserSize(type);
+
+	public String getUserSize() {
+		size = (int) uServer.getUserSize(type);
 		return SUCCESS;
 	}
 
-	
+	public String addUser() {
+		
+		user.setAddress("四川成都");
+		user.setFatienum(0);
+		user.setFensi(0l);
+		user.setGongsi("");
+		user.setGuanzhu(0l);
+		user.setImei("hckhck1");
+		user.setIsok(1);
+		user.setIsvip(0);
+		user.setJieshao("暂无");
+		user.setJifeng(0l);
+		user.setJinbi(0l);
+		user.setJingdu(1.0);
+		user.setWeidu(1.0);
+		user.setLogintime("2017-8-18");
+		user.setRegistertime(new Timestamp(System.currentTimeMillis())
+				.toString());
+		user.setName("hckhck1");
+		user.setPhone("暂无");
+		user.setPhonetype("系统");
+		user.setPushid("暂无");
+		user.setQq("暂无");
+		user.setWeixin("暂无");
+		user.setPhone("暂无");
+		user.setUsertype(0);
+		user.setSex((new Random().nextInt(2) + 1));
+		String tx="http://139.224.190.65:8080/apptg/admin/touxiang/";
+		tx=tx+user.getTouxiang();
+		user.setPassword("hck1");
+		user.setGongsi("无");
+		user.setPushid("hck");
+		user.setQqid("hck");
+		user.setTouxiang(tx);
+		uServer.addUser(user);
+		return SUCCESS;
+
+	}
+
 }

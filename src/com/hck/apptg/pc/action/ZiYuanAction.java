@@ -3,6 +3,7 @@ package com.hck.apptg.pc.action;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import com.hck.apptg.bean.User;
 import com.hck.apptg.bean.Ziyuan;
@@ -91,28 +92,30 @@ public class ZiYuanAction extends BaseAction {
 	public String getUserTieZi() {
 		
 		ziyuans = ziYuanDaoServer.getUserTieZi(page, id);
-		LogUtil.log("ziyuansziyuansziyuansziyuans: "+ziyuans.size() +"id: "+id);
 		ActionContext.getContext().getSession().put("ziyuanPage", page);
 		return SUCCESS;
 	}
 	
 	public String addZiYuan(){
+		LogUtil.log("addZiYuan : "+ziyuan.getJiage());
+		LogUtil.log("addZiYuan : "+ziyuan.getUser().getQq());
 		if (ziyuan.getAppName()==null) {
 			addActionError("app名字不能为空");
 		}
 		else if (ziyuan.getContent()==null) {
 			addActionError("详细内容不能为空");
 		}
-		else if (ziyuan.getTitle()==null) {
-			addActionError("标题不能为空");
-		}
 		else {
 			ziyuan.setFabutime(new Timestamp(System.currentTimeMillis()).toString());
 			ziyuan.setIsok(1);
 			ziyuan.setIstj(0);
-			User user=new User();
-			user.setId(29l);
+			User user=ziyuan.getUser();
+			long uid=(new Random().nextInt(60)+1);
+			user.setId(uid);
 			ziyuan.setUser(user);
+			ziyuan.setQq(ziyuan.getUser().getQq());
+			ziyuan.setWeixin(ziyuan.getUser().getWeixin());
+			ziyuan.setPhone(ziyuan.getUser().getPhone());
 			ziYuanDaoServer.addZiYuan(ziyuan);
 			addActionError("增加成功");
 		}

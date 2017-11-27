@@ -3,10 +3,12 @@ package com.hck.apptg.pc.action;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import com.hck.apptg.bean.Qudao;
 import com.hck.apptg.bean.User;
 import com.hck.apptg.daoserver.QuDaoServer;
+import com.hck.apptg.util.LogUtil;
 import com.opensymphony.xwork2.ActionContext;
 
 public class QuDaoAction extends BaseAction {
@@ -18,7 +20,7 @@ public class QuDaoAction extends BaseAction {
 		return type;
 	}
 
-	
+	private String liangjiString[]={"100-499","500-1500","1500-3500","3500-6500"};
 
 	public Qudao getQudao() {
 		return qudao;
@@ -52,7 +54,7 @@ public class QuDaoAction extends BaseAction {
 		this.quLists = quLists;
 	}
 
-	public String getQuDao() {
+	public String getQuDaos() {
 		List<Qudao> tj = quDaoServer.getTj();
 		quLists = quDaoServer.getQudaos(page);
 		if (tj != null && !tj.isEmpty()) {
@@ -78,15 +80,21 @@ public class QuDaoAction extends BaseAction {
 		if (qudao.getContent()==null) {
 			addActionError("内容不能为空");
 		}
-		else if (qudao.getTitle()==null) {
-			addActionError("标题不能为空");
-		}
 		else  {
-			User user=new User();
-			user.setId(29l);
+			User user=qudao.getUser();
+			long uid=(new Random().nextInt(60)+1);
+			int liangji=(new Random().nextInt(3));
+			user.setId(uid);
+			qudao.setQq(qudao.getUser().getQq());
+			qudao.setWeixin(qudao.getUser().getWeixin());
+			qudao.setPhone(qudao.getUser().getPhone());
 			qudao.setUser(user);
 			qudao.setIsok(1);
 			qudao.setIstj(0);
+			if (liangji>=liangjiString.length) {
+				liangji=2;
+			}
+			qudao.setLiangji(liangjiString[liangji]);
 			qudao.setShijian(new Timestamp(System.currentTimeMillis()).toString());
 			quDaoServer.addQuDao(qudao);
 			addActionError("增加成功");

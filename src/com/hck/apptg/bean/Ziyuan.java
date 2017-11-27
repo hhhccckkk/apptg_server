@@ -13,7 +13,7 @@ public class Ziyuan implements java.io.Serializable, Comparable {
 	private String title;
 	private String content;
 	private Integer isok;
-	private Integer jiage;
+	private Double jiage;
 	private String jiesuantime;
 	private String fabukind;
 	private String fabutime;
@@ -35,7 +35,7 @@ public class Ziyuan implements java.io.Serializable, Comparable {
 
 	/** full constructor */
 	public Ziyuan(User user, String title, String content, Integer isok,
-			Integer jiage, String jiesuantime, String fabukind,
+			Double jiage, String jiesuantime, String fabukind,
 			String fabutime, String apptype, String hedui, Integer istj,
 			Long huifunum, String qq, String phone, String weixin,
 			String appName, String xitong) {
@@ -100,11 +100,13 @@ public class Ziyuan implements java.io.Serializable, Comparable {
 		this.isok = isok;
 	}
 
-	public Integer getJiage() {
-		return this.jiage;
+	
+
+	public Double getJiage() {
+		return jiage;
 	}
 
-	public void setJiage(Integer jiage) {
+	public void setJiage(Double jiage) {
 		this.jiage = jiage;
 	}
 

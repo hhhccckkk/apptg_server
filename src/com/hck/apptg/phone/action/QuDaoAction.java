@@ -77,12 +77,14 @@ public class QuDaoAction extends BaseAction {
 		qudao.setWeixin(wx);
 		qudao.setDengji(dengji);
 		qudao.setIsok(1);
+	
 		qudao.setIstj(0);
 		qudao.setLianjie(wangzhi);
 		qudao.setShijian(new Timestamp(System.currentTimeMillis()).toString());
 		User user = new User();
 		user.setId(id);
 		qudao.setUser(user);
+		
 		if (mDaoServer.addQuDao(qudao)) {
 			boolean isok = jinBiServer.isAddJinBi(id, 50, 10);
 			json.put("isok", isok);
@@ -106,18 +108,19 @@ public class QuDaoAction extends BaseAction {
 			qudaoData.setLeixing(qudao.getLeixing());
 			qudaoData.setLiangji(qudao.getLiangji());
 			qudaoData.setName(user.getNicheng());
-			qudaoData.setPhone(user.getPhone());
-			qudaoData.setQq(user.getQq());
+			qudaoData.setPhone(qudao.getPhone());
+			qudaoData.setQq(qudao.getQq());
 			qudaoData.setSex(user.getSex());
 			qudaoData.setShijian(qudao.getShijian());
 			qudaoData.setTitle(qudao.getTitle());
 			qudaoData.setTouxiang(user.getTouxiang());
 			qudaoData.setUid(user.getId());
-			qudaoData.setWeixin(user.getWeixin());
+			qudaoData.setWeixin(qudao.getWeixin());
 			qudaoData.setXitong(qudao.getXitong());
 			qudaoData.setLianjie(qudao.getLianjie());
 			qudaoData.setFensi(user.getFensi());
 		     qudaoData.setIstj(qudao.getIstj());
+		     qudaoData.setQqId(user.getQqid());
 			datas.add(qudaoData);
 		}
 		return datas;

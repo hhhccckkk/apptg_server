@@ -94,6 +94,7 @@
 					<li class="subMenuTitle">功能列表</li>
 					<li class="subMenu"><a href="#">用户管理</a>
 						<ul class="yingcang">
+						<li><a href="addUser.jsp" target="right">增加用户</a></li>
 							<li><a href="searchUser.jsp" target="right">搜索用户</a></li>
 							<li><a href="getUserSize?type=0" target="right">用户统计</a></li>
 							<li><a href="getUserSize?type=1" target="right">今天新增用户</a></li>

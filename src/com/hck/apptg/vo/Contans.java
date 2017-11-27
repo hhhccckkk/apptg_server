@@ -39,4 +39,6 @@ public class Contans {
 	public static final int RI_JIE = 5;
 	public static final int ZHOU_JIE = 6;
 	public static final int YUE_JIE = 7;
+	
+	public static final int USER_IS_EXIT = 8;
 }

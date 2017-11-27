@@ -24,7 +24,16 @@ public class QudaoData implements java.io.Serializable {
 	private long uid;
     private long fensi;
     private int istj;
+    private String qqId;
     
+	public String getQqId() {
+		return qqId;
+	}
+
+	public void setQqId(String qqId) {
+		this.qqId = qqId;
+	}
+
 	public int getIstj() {
 		return istj;
 	}
